@@ -7,16 +7,16 @@ import shim from '@joplin/lib/shim';
 const { connect } = require('react-redux');
 const { _ } = require('@joplin/lib/locale');
 const { themeStyle } = require('@joplin/lib/theme');
-const SearchEngine = require('@joplin/lib/services/searchengine/SearchEngine');
-const BaseModel = require('@joplin/lib/BaseModel').default;
-const Tag = require('@joplin/lib/models/Tag');
-const Folder = require('@joplin/lib/models/Folder');
-const Note = require('@joplin/lib/models/Note');
+import SearchEngine from '@joplin/lib/services/searchengine/SearchEngine';
+import BaseModel from '@joplin/lib/BaseModel';
+import Tag from '@joplin/lib/models/Tag';
+import Folder from '@joplin/lib/models/Folder';
+import Note from '@joplin/lib/models/Note';
 const { ItemList } = require('../gui/ItemList.min');
 const HelpButton = require('../gui/HelpButton.min');
 const { surroundKeywords, nextWhitespaceIndex, removeDiacritics } = require('@joplin/lib/string-utils.js');
 const { mergeOverlappingIntervals } = require('@joplin/lib/ArrayUtils.js');
-const markupLanguageUtils = require('@joplin/lib/markupLanguageUtils').default;
+import markupLanguageUtils from '../utils/markupLanguageUtils';
 
 const PLUGIN_NAME = 'gotoAnything';
 
@@ -67,7 +67,6 @@ class GotoAnything {
 
 class Dialog extends React.PureComponent<Props, State> {
 
-	private fuzzy_: boolean;
 	private styles_: any;
 	private inputRef: any;
 	private itemListRef: any;
@@ -76,8 +75,6 @@ class Dialog extends React.PureComponent<Props, State> {
 
 	constructor(props: Props) {
 		super(props);
-
-		this.fuzzy_ = false;
 
 		const startString = props?.userData?.startString ? props?.userData?.startString : '';
 
@@ -242,7 +239,7 @@ class Dialog extends React.PureComponent<Props, State> {
 	}
 
 	async keywords(searchQuery: string) {
-		const parsedQuery = await SearchEngine.instance().parseQuery(searchQuery, this.fuzzy_);
+		const parsedQuery = await SearchEngine.instance().parseQuery(searchQuery);
 		return SearchEngine.instance().allParsedQueryTerms(parsedQuery);
 	}
 
@@ -296,7 +293,7 @@ class Dialog extends React.PureComponent<Props, State> {
 			} else { // Note TITLE or BODY
 				listType = BaseModel.TYPE_NOTE;
 				searchQuery = this.makeSearchQuery(this.state.query);
-				results = await SearchEngine.instance().search(searchQuery, { fuzzy: this.fuzzy_ });
+				results = await SearchEngine.instance().search(searchQuery);
 
 				resultsInBody = !!results.find((row: any) => row.fields.includes('body'));
 

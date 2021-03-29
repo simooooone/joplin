@@ -15,19 +15,22 @@ import KeychainServiceDriver from '@joplin/lib/services/keychain/KeychainService
 import KeychainServiceDriverDummy from '@joplin/lib/services/keychain/KeychainServiceDriver.dummy';
 import PluginRunner from '../app/services/plugins/PluginRunner';
 import PluginService from '@joplin/lib/services/plugins/PluginService';
+import FileApiDriverJoplinServer from '@joplin/lib/file-api-driver-joplinServer';
+import OneDriveApi from '@joplin/lib/onedrive-api';
+import SyncTargetOneDrive from '@joplin/lib/SyncTargetOneDrive';
+import JoplinDatabase from '@joplin/lib/JoplinDatabase';
 
 const fs = require('fs-extra');
-const { JoplinDatabase } = require('@joplin/lib/joplin-database.js');
 const { DatabaseDriverNode } = require('@joplin/lib/database-driver-node.js');
-const Folder = require('@joplin/lib/models/Folder.js');
-const Note = require('@joplin/lib/models/Note.js');
-const ItemChange = require('@joplin/lib/models/ItemChange.js');
-const Resource = require('@joplin/lib/models/Resource.js');
-const Tag = require('@joplin/lib/models/Tag.js');
-const NoteTag = require('@joplin/lib/models/NoteTag.js');
-const Revision = require('@joplin/lib/models/Revision.js');
-const MasterKey = require('@joplin/lib/models/MasterKey');
-const BaseItem = require('@joplin/lib/models/BaseItem.js');
+import Folder from '@joplin/lib/models/Folder';
+import Note from '@joplin/lib/models/Note';
+import ItemChange from '@joplin/lib/models/ItemChange';
+import Resource from '@joplin/lib/models/Resource';
+import Tag from '@joplin/lib/models/Tag';
+import NoteTag from '@joplin/lib/models/NoteTag';
+import Revision from '@joplin/lib/models/Revision';
+import MasterKey from '@joplin/lib/models/MasterKey';
+import BaseItem from '@joplin/lib/models/BaseItem';
 const { FileApi } = require('@joplin/lib/file-api.js');
 const { FileApiDriverMemory } = require('@joplin/lib/file-api-driver-memory.js');
 const { FileApiDriverLocal } = require('@joplin/lib/file-api-driver-local.js');
@@ -39,17 +42,17 @@ const { shimInit } = require('@joplin/lib/shim-init-node.js');
 const SyncTargetRegistry = require('@joplin/lib/SyncTargetRegistry.js');
 const SyncTargetMemory = require('@joplin/lib/SyncTargetMemory.js');
 const SyncTargetFilesystem = require('@joplin/lib/SyncTargetFilesystem.js');
-const SyncTargetOneDrive = require('@joplin/lib/SyncTargetOneDrive.js');
 const SyncTargetNextcloud = require('@joplin/lib/SyncTargetNextcloud.js');
 const SyncTargetDropbox = require('@joplin/lib/SyncTargetDropbox.js');
 const SyncTargetAmazonS3 = require('@joplin/lib/SyncTargetAmazonS3.js');
-const EncryptionService = require('@joplin/lib/services/EncryptionService.js');
-const DecryptionWorker = require('@joplin/lib/services/DecryptionWorker.js');
-const RevisionService = require('@joplin/lib/services/RevisionService.js');
-const ResourceFetcher = require('@joplin/lib/services/ResourceFetcher.js');
+import SyncTargetJoplinServer from '@joplin/lib/SyncTargetJoplinServer';
+import EncryptionService from '@joplin/lib/services/EncryptionService';
+import DecryptionWorker from '@joplin/lib/services/DecryptionWorker';
+import RevisionService from '@joplin/lib/services/RevisionService';
+import ResourceFetcher from '@joplin/lib/services/ResourceFetcher';
 const WebDavApi = require('@joplin/lib/WebDavApi');
 const DropboxApi = require('@joplin/lib/DropboxApi');
-const { OneDriveApi } = require('@joplin/lib/onedrive-api');
+import JoplinServerApi from '@joplin/lib/JoplinServerApi';
 const { loadKeychainServiceAndSettings } = require('@joplin/lib/services/SettingUtils');
 const md5 = require('md5');
 const S3 = require('aws-sdk/clients/s3');
@@ -101,14 +104,17 @@ FileApiDriverLocal.fsDriver_ = fsDriver;
 
 const logDir = `${__dirname}/../tests/logs`;
 const baseTempDir = `${__dirname}/../tests/tmp/${suiteName_}`;
+const supportDir = `${__dirname}/support`;
 
 // We add a space in the data directory path as that will help uncover
 // various space-in-path issues.
 const dataDir = `${__dirname}/test data/${suiteName_}`;
+const profileDir = `${dataDir}/profile`;
 
 fs.mkdirpSync(logDir, 0o755);
 fs.mkdirpSync(baseTempDir, 0o755);
 fs.mkdirpSync(dataDir);
+fs.mkdirpSync(profileDir);
 
 SyncTargetRegistry.addClass(SyncTargetMemory);
 SyncTargetRegistry.addClass(SyncTargetFilesystem);
@@ -116,6 +122,7 @@ SyncTargetRegistry.addClass(SyncTargetOneDrive);
 SyncTargetRegistry.addClass(SyncTargetNextcloud);
 SyncTargetRegistry.addClass(SyncTargetDropbox);
 SyncTargetRegistry.addClass(SyncTargetAmazonS3);
+SyncTargetRegistry.addClass(SyncTargetJoplinServer);
 
 let syncTargetName_ = '';
 let syncTargetId_: number = null;
@@ -132,7 +139,7 @@ function setSyncTargetName(name: string) {
 	syncTargetName_ = name;
 	syncTargetId_ = SyncTargetRegistry.nameToId(syncTargetName_);
 	sleepTime = syncTargetId_ == SyncTargetRegistry.nameToId('filesystem') ? 1001 : 100;// 400;
-	isNetworkSyncTarget_ = ['nextcloud', 'dropbox', 'onedrive', 'amazon_s3'].includes(syncTargetName_);
+	isNetworkSyncTarget_ = ['nextcloud', 'dropbox', 'onedrive', 'amazon_s3', 'joplinServer'].includes(syncTargetName_);
 	synchronizers_ = [];
 	return previousName;
 }
@@ -142,6 +149,7 @@ setSyncTargetName('memory');
 // setSyncTargetName('dropbox');
 // setSyncTargetName('onedrive');
 // setSyncTargetName('amazon_s3');
+// setSyncTargetName('joplinServer');
 
 // console.info(`Testing with sync target: ${syncTargetName_}`);
 
@@ -175,6 +183,9 @@ BaseItem.loadClass('Revision', Revision);
 Setting.setConstant('appId', 'net.cozic.joplintest-cli');
 Setting.setConstant('appType', 'cli');
 Setting.setConstant('tempDir', baseTempDir);
+Setting.setConstant('cacheDir', baseTempDir);
+Setting.setConstant('pluginDataDir', `${profileDir}/profile/plugin-data`);
+Setting.setConstant('profileDir', profileDir);
 Setting.setConstant('env', 'dev');
 
 BaseService.logger_ = logger;
@@ -198,9 +209,28 @@ function sleep(n: number) {
 }
 
 function msleep(ms: number) {
+	// It seems setTimeout can sometimes last less time than the provided
+	// interval:
+	//
+	// https://stackoverflow.com/a/50912029/561309
+	//
+	// This can cause issues in tests where we expect the actual duration to be
+	// the same as the provided interval or more, but not less. So the code
+	// below check that the elapsed time is no less than the provided interval,
+	// and if it is, it waits a bit longer.
+	const startTime = Date.now();
 	return new Promise((resolve) => {
 		shim.setTimeout(() => {
-			resolve(null);
+			if (Date.now() - startTime < ms) {
+				const iid = setInterval(() => {
+					if (Date.now() - startTime >= ms) {
+						clearInterval(iid);
+						resolve(null);
+					}
+				}, 2);
+			} else {
+				resolve(null);
+			}
 		}, ms);
 	});
 }
@@ -212,6 +242,16 @@ function currentClientId() {
 async function afterEachCleanUp() {
 	await ItemChange.waitForAllSaved();
 	KeymapService.destroyInstance();
+}
+
+async function afterAllCleanUp() {
+	if (fileApi()) {
+		try {
+			await fileApi().clearRoot();
+		} catch (error) {
+			console.warn('Could not clear sync target root:', error);
+		}
+	}
 }
 
 async function switchClient(id: number, options: any = null) {
@@ -346,7 +386,7 @@ async function setupDatabaseAndSynchronizer(id: number, options: any = null) {
 	if (!synchronizers_[id]) {
 		const SyncTargetClass = SyncTargetRegistry.classById(syncTargetId_);
 		const syncTarget = new SyncTargetClass(db(id));
-		await initFileApi();
+		await initFileApi(suiteName_);
 		syncTarget.setFileApi(fileApi());
 		syncTarget.setLogger(logger);
 		synchronizers_[id] = await syncTarget.synchronizer();
@@ -361,10 +401,11 @@ async function setupDatabaseAndSynchronizer(id: number, options: any = null) {
 	resourceFetchers_[id] = new ResourceFetcher(() => { return synchronizers_[id].api(); });
 	kvStores_[id] = new KvStore();
 
+	await fileApi().initialize();
 	await fileApi().clearRoot();
 }
 
-function db(id: number = null) {
+function db(id: number = null): JoplinDatabase {
 	if (id === null) id = currentClient_;
 	return databases_[id];
 }
@@ -440,7 +481,7 @@ async function loadEncryptionMasterKey(id: number = null, useExisting = false) {
 	return masterKey;
 }
 
-async function initFileApi() {
+async function initFileApi(suiteName: string) {
 	if (fileApis_[syncTargetId_]) return;
 
 	let fileApi = null;
@@ -482,7 +523,6 @@ async function initFileApi() {
 
 		if (!process.argv.includes('--runInBand')) {
 			throw new Error('OneDrive tests must be run sequentially, with the --runInBand arg. eg `npm test -- --runInBand`');
-
 		}
 
 		const { parameters, setEnvOverride } = require('@joplin/lib/parameters.js');
@@ -506,6 +546,16 @@ async function initFileApi() {
 		if (!amazonS3Creds || !amazonS3Creds.accessKeyId) throw new Error(`AWS auth JSON missing in ${amazonS3CredsPath} format should be: { "accessKeyId": "", "secretAccessKey": "", "bucket": "mybucket"}`);
 		const api = new S3({ accessKeyId: amazonS3Creds.accessKeyId, secretAccessKey: amazonS3Creds.secretAccessKey, s3UseArnRegion: true });
 		fileApi = new FileApi('', new FileApiDriverAmazonS3(api, amazonS3Creds.bucket));
+	} else if (syncTargetId_ == SyncTargetRegistry.nameToId('joplinServer')) {
+		// Note that to test the API in parallel mode, you need to use Postgres
+		// as database, as the SQLite database is not reliable when being
+		// read/write from multiple processes at the same time.
+		const api = new JoplinServerApi({
+			baseUrl: () => 'http://localhost:22300',
+			username: () => 'admin@localhost',
+			password: () => 'admin',
+		});
+		fileApi = new FileApi(`Apps/Joplin-${suiteName}`, new FileApiDriverJoplinServer(api));
 	}
 
 	fileApi.setLogger(logger);
@@ -691,7 +741,13 @@ async function createTempDir() {
 	return tempDirPath;
 }
 
-function newPluginService(appVersion = '1.4') {
+interface PluginServiceOptions {
+	getState?(): Record<string, any>;
+}
+
+function newPluginService(appVersion = '1.4', options: PluginServiceOptions = null): PluginService {
+	options = options || {};
+
 	const runner = new PluginRunner();
 	const service = new PluginService();
 	service.initialize(
@@ -702,7 +758,7 @@ function newPluginService(appVersion = '1.4') {
 		runner,
 		{
 			dispatch: () => {},
-			getState: () => {},
+			getState: options.getState ? options.getState : () => {},
 		}
 	);
 	return service;
@@ -724,6 +780,17 @@ function newPluginScript(script: string) {
 	`;
 }
 
+async function waitForFolderCount(count: number) {
+	const timeout = 2000;
+	const startTime = Date.now();
+	while (true) {
+		const folders = await Folder.all();
+		if (folders.length >= count) return;
+		if (Date.now() - startTime > timeout) throw new Error('Timeout waiting for folders to be created');
+		await msleep(10);
+	}
+}
+
 // TODO: Update for Jest
 
 // function mockDate(year, month, day, tick) {
@@ -743,18 +810,18 @@ class TestApp extends BaseApplication {
 	private middlewareCalls_: any[];
 	private logger_: LoggerWrapper;
 
-	constructor(hasGui = true) {
+	public constructor(hasGui = true) {
 		super();
 		this.hasGui_ = hasGui;
 		this.middlewareCalls_ = [];
 		this.logger_ = super.logger();
 	}
 
-	hasGui() {
+	public hasGui() {
 		return this.hasGui_;
 	}
 
-	async start(argv: any[]) {
+	public async start(argv: any[]) {
 		this.logger_.info('Test app starting...');
 
 		if (!argv.includes('--profile')) {
@@ -775,7 +842,7 @@ class TestApp extends BaseApplication {
 		this.logger_.info('Test app started...');
 	}
 
-	async generalMiddleware(store: any, next: any, action: any) {
+	public async generalMiddleware(store: any, next: any, action: any) {
 		this.middlewareCalls_.push(true);
 		try {
 			await super.generalMiddleware(store, next, action);
@@ -784,7 +851,7 @@ class TestApp extends BaseApplication {
 		}
 	}
 
-	async wait() {
+	public async wait() {
 		return new Promise((resolve) => {
 			const iid = shim.setInterval(() => {
 				if (!this.middlewareCalls_.length) {
@@ -795,11 +862,11 @@ class TestApp extends BaseApplication {
 		});
 	}
 
-	async profileDir() {
+	public async profileDir() {
 		return Setting.value('profileDir');
 	}
 
-	async destroy() {
+	public async destroy() {
 		this.logger_.info('Test app stopping...');
 		await this.wait();
 		await ItemChange.waitForAllSaved();
@@ -809,4 +876,4 @@ class TestApp extends BaseApplication {
 	}
 }
 
-module.exports = { exportDir, newPluginService, newPluginScript, synchronizerStart, afterEachCleanUp, syncTargetName, setSyncTargetName, syncDir, createTempDir, isNetworkSyncTarget, kvStore, expectThrow, logger, expectNotThrow, resourceService, resourceFetcher, tempFilePath, allSyncTargetItemsEncrypted, msleep, setupDatabase, revisionService, setupDatabaseAndSynchronizer, db, synchronizer, fileApi, sleep, clearDatabase, switchClient, syncTargetId, objectsEqual, checkThrowAsync, checkThrow, encryptionService, loadEncryptionMasterKey, fileContentEqual, decryptionWorker, currentClientId, id, ids, sortedIds, at, createNTestNotes, createNTestFolders, createNTestTags, TestApp };
+export { supportDir, waitForFolderCount, afterAllCleanUp, exportDir, newPluginService, newPluginScript, synchronizerStart, afterEachCleanUp, syncTargetName, setSyncTargetName, syncDir, createTempDir, isNetworkSyncTarget, kvStore, expectThrow, logger, expectNotThrow, resourceService, resourceFetcher, tempFilePath, allSyncTargetItemsEncrypted, msleep, setupDatabase, revisionService, setupDatabaseAndSynchronizer, db, synchronizer, fileApi, sleep, clearDatabase, switchClient, syncTargetId, objectsEqual, checkThrowAsync, checkThrow, encryptionService, loadEncryptionMasterKey, fileContentEqual, decryptionWorker, currentClientId, id, ids, sortedIds, at, createNTestNotes, createNTestFolders, createNTestTags, TestApp };

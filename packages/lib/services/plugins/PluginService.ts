@@ -2,14 +2,15 @@ import Plugin from './Plugin';
 import manifestFromObject from './utils/manifestFromObject';
 import Global from './api/Global';
 import BasePluginRunner from './BasePluginRunner';
-import BaseService  from '../BaseService';
+import BaseService from '../BaseService';
 import shim from '../../shim';
 import { filename, dirname, rtrimSlashes } from '../../path-utils';
 import Setting from '../../models/Setting';
 import Logger from '../../Logger';
+import RepositoryApi from './RepositoryApi';
+import produce from 'immer';
 const compareVersions = require('compare-versions');
 const uslug = require('uslug');
-const md5File = require('md5-file/promise');
 
 const logger = Logger.create('PluginService');
 
@@ -30,12 +31,19 @@ export interface Plugins {
 export interface PluginSetting {
 	enabled: boolean;
 	deleted: boolean;
+
+	// After a plugin has been updated, the user needs to restart the app before
+	// loading the new version. In the meantime, we set this property to `true`
+	// so that we know the plugin has been updated. It is used for example to
+	// disable the Update button.
+	hasBeenUpdated: boolean;
 }
 
 export function defaultPluginSetting(): PluginSetting {
 	return {
 		enabled: true,
 		deleted: false,
+		hasBeenUpdated: false,
 	};
 }
 
@@ -65,8 +73,9 @@ export default class PluginService extends BaseService {
 	private platformImplementation_: any = null;
 	private plugins_: Plugins = {};
 	private runner_: BasePluginRunner = null;
+	private startedPlugins_: Record<string, boolean> = {};
 
-	initialize(appVersion: string, platformImplementation: any, runner: BasePluginRunner, store: any) {
+	public initialize(appVersion: string, platformImplementation: any, runner: BasePluginRunner, store: any) {
 		this.appVersion_ = appVersion;
 		this.store_ = store;
 		this.runner_ = runner;
@@ -91,6 +100,10 @@ export default class PluginService extends BaseService {
 		delete this.plugins_[pluginId];
 	}
 
+	private async deletePluginFiles(plugin: Plugin) {
+		await shim.fsDriver().remove(plugin.baseDir);
+	}
+
 	public pluginById(id: string): Plugin {
 		if (!this.plugins_[id]) throw new Error(`Plugin not found: ${id}`);
 
@@ -112,6 +125,15 @@ export default class PluginService extends BaseService {
 
 	public serializePluginSettings(settings: PluginSettings): any {
 		return JSON.stringify(settings);
+	}
+
+	public pluginIdByContentScriptId(contentScriptId: string): string {
+		for (const pluginId in this.plugins_) {
+			const plugin = this.plugins_[pluginId];
+			const contentScript = plugin.contentScriptById(contentScriptId);
+			if (contentScript) return pluginId;
+		}
+		return null;
 	}
 
 	private async parsePluginJsBundle(jsBundleString: string) {
@@ -161,9 +183,9 @@ export default class PluginService extends BaseService {
 		baseDir = rtrimSlashes(baseDir);
 
 		const fname = filename(path);
-		const hash = await md5File(path);
+		const hash = await shim.fsDriver().md5File(path);
 
-		const unpackDir = `${Setting.value('tempDir')}/${fname}`;
+		const unpackDir = `${Setting.value('cacheDir')}/${fname}`;
 		const manifestFilePath = `${unpackDir}/manifest.json`;
 
 		let manifest: any = await this.loadManifestToObject(manifestFilePath);
@@ -172,7 +194,7 @@ export default class PluginService extends BaseService {
 			await shim.fsDriver().remove(unpackDir);
 			await shim.fsDriver().mkdir(unpackDir);
 
-			await require('tar').extract({
+			await shim.fsDriver().tarExtract({
 				strict: true,
 				portable: true,
 				file: path,
@@ -184,7 +206,7 @@ export default class PluginService extends BaseService {
 
 			manifest._package_hash = hash;
 
-			await shim.fsDriver().writeFile(manifestFilePath, JSON.stringify(manifest), 'utf8');
+			await shim.fsDriver().writeFile(manifestFilePath, JSON.stringify(manifest, null, '\t'), 'utf8');
 		}
 
 		return this.loadPluginFromPath(unpackDir);
@@ -245,7 +267,9 @@ export default class PluginService extends BaseService {
 
 		const manifest = manifestFromObject(manifestObj);
 
-		const plugin = new Plugin(baseDir, manifest, scriptText, (action: any) => this.store_.dispatch(action));
+		const dataDir = `${Setting.value('pluginDataDir')}/${manifest.id}`;
+
+		const plugin = new Plugin(baseDir, manifest, scriptText, (action: any) => this.store_.dispatch(action), dataDir);
 
 		for (const msg of deprecationNotices) {
 			plugin.deprecationNotice('1.5', msg);
@@ -310,8 +334,19 @@ export default class PluginService extends BaseService {
 		}
 	}
 
+	public isCompatible(pluginVersion: string): boolean {
+		return compareVersions(this.appVersion_, pluginVersion) >= 0;
+	}
+
+	public get allPluginsStarted(): boolean {
+		for (const pluginId of Object.keys(this.startedPlugins_)) {
+			if (!this.startedPlugins_[pluginId]) return false;
+		}
+		return true;
+	}
+
 	public async runPlugin(plugin: Plugin) {
-		if (compareVersions(this.appVersion_, plugin.manifest.app_min_version) < 0) {
+		if (!this.isCompatible(plugin.manifest.app_min_version)) {
 			throw new Error(`Plugin "${plugin.id}" was disabled because it requires Joplin version ${plugin.manifest.app_min_version} and current version is ${this.appVersion_}.`);
 		} else {
 			this.store_.dispatch({
@@ -324,8 +359,28 @@ export default class PluginService extends BaseService {
 			});
 		}
 
+		this.startedPlugins_[plugin.id] = false;
+
+		const onStarted = () => {
+			this.startedPlugins_[plugin.id] = true;
+			plugin.off('started', onStarted);
+		};
+
+		plugin.on('started', onStarted);
+
 		const pluginApi = new Global(this.platformImplementation_, plugin, this.store_);
 		return this.runner_.run(plugin, pluginApi);
+	}
+
+	public async installPluginFromRepo(repoApi: RepositoryApi, pluginId: string): Promise<Plugin> {
+		const pluginPath = await repoApi.downloadPlugin(pluginId);
+		const plugin = await this.installPlugin(pluginPath);
+		await shim.fsDriver().remove(pluginPath);
+		return plugin;
+	}
+
+	public async updatePluginFromRepo(repoApi: RepositoryApi, pluginId: string): Promise<Plugin> {
+		return this.installPluginFromRepo(repoApi, pluginId);
 	}
 
 	public async installPlugin(jplPath: string): Promise<Plugin> {
@@ -335,6 +390,7 @@ export default class PluginService extends BaseService {
 		// from where it is now to check that it is valid and to retrieve
 		// the plugin ID.
 		const preloadedPlugin = await this.loadPluginFromPath(jplPath);
+		await this.deletePluginFiles(preloadedPlugin);
 
 		const destPath = `${Setting.value('pluginDir')}/${preloadedPlugin.id}.jpl`;
 		await shim.fsDriver().copy(jplPath, destPath);
@@ -383,6 +439,16 @@ export default class PluginService extends BaseService {
 		}
 
 		return newSettings;
+	}
+
+	// On startup the "hasBeenUpdated" prop can be cleared since the new version
+	// of the plugin has now been loaded.
+	public clearUpdateState(settings: PluginSettings): PluginSettings {
+		return produce(settings, (draft: PluginSettings) => {
+			for (const pluginId in draft) {
+				if (draft[pluginId].hasBeenUpdated) draft[pluginId].hasBeenUpdated = false;
+			}
+		});
 	}
 
 	public async destroy() {

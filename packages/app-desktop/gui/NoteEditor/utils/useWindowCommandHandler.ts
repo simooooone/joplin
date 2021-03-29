@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { FormNote, ScrollOptionTypes } from './types';
 import editorCommandDeclarations from '../commands/editorCommandDeclarations';
-import CommandService, { CommandDeclaration,  CommandRuntime, CommandContext } from '@joplin/lib/services/CommandService';
-const time = require('@joplin/lib/time').default;
-const { reg } = require('@joplin/lib/registry.js');
+import CommandService, { CommandDeclaration, CommandRuntime, CommandContext } from '@joplin/lib/services/CommandService';
+import time from '@joplin/lib/time';
+import { reg } from '@joplin/lib/registry';
 
 const commandsWithDependencies = [
 	require('../commands/showLocalSearch'),
@@ -25,6 +25,11 @@ interface HookDependencies {
 function editorCommandRuntime(declaration: CommandDeclaration, editorRef: any, setFormNote: Function): CommandRuntime {
 	return {
 		execute: async (_context: CommandContext, ...args: any[]) => {
+			if (!editorRef.current) {
+				reg.logger().warn('Received command, but editor is gone', declaration.name);
+				return;
+			}
+
 			if (!editorRef.current.execCommand) {
 				reg.logger().warn('Received command, but editor cannot execute commands', declaration.name);
 				return;

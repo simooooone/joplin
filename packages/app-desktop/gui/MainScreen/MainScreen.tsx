@@ -8,9 +8,8 @@ import NoteEditor from '../NoteEditor/NoteEditor';
 import NoteContentPropertiesDialog from '../NoteContentPropertiesDialog';
 import ShareNoteDialog from '../ShareNoteDialog';
 import CommandService from '@joplin/lib/services/CommandService';
-import PluginService from '@joplin/lib/services/plugins/PluginService';
 import { PluginStates, utils as pluginUtils } from '@joplin/lib/services/plugins/reducer';
-import SideBar from '../SideBar/SideBar';
+import Sidebar from '../Sidebar/Sidebar';
 import UserWebview from '../../services/plugins/UserWebview';
 import UserWebviewDialog from '../../services/plugins/UserWebviewDialog';
 import { ContainerType } from '@joplin/lib/services/plugins/WebviewController';
@@ -30,16 +29,13 @@ import { themeStyle } from '@joplin/lib/theme';
 import validateLayout from '../ResizableLayout/utils/validateLayout';
 import iterateItems from '../ResizableLayout/utils/iterateItems';
 import removeItem from '../ResizableLayout/utils/removeItem';
-import Logger from '@joplin/lib/Logger';
 
 const { connect } = require('react-redux');
 const { PromptDialog } = require('../PromptDialog.min.js');
 const NotePropertiesDialog = require('../NotePropertiesDialog.min.js');
 const PluginManager = require('@joplin/lib/services/PluginManager');
-const EncryptionService = require('@joplin/lib/services/EncryptionService');
+import EncryptionService from '@joplin/lib/services/EncryptionService';
 const ipcRenderer = require('electron').ipcRenderer;
-
-const logger = Logger.create('MainScreen');
 
 interface LayerModalState {
 	visible: boolean;
@@ -66,6 +62,7 @@ interface Props {
 	themeId: number;
 	settingEditorCodeView: boolean;
 	pluginsLegacy: any;
+	startupPluginsLoaded: boolean;
 }
 
 interface State {
@@ -157,7 +154,6 @@ class MainScreenComponent extends React.Component<Props, State> {
 		this.notePropertiesDialog_close = this.notePropertiesDialog_close.bind(this);
 		this.noteContentPropertiesDialog_close = this.noteContentPropertiesDialog_close.bind(this);
 		this.shareNoteDialog_close = this.shareNoteDialog_close.bind(this);
-		this.userWebview_message = this.userWebview_message.bind(this);
 		this.resizableLayout_resize = this.resizableLayout_resize.bind(this);
 		this.resizableLayout_renderItem = this.resizableLayout_renderItem.bind(this);
 		this.resizableLayout_moveButtonClick = this.resizableLayout_moveButtonClick.bind(this);
@@ -214,7 +210,7 @@ class MainScreenComponent extends React.Component<Props, State> {
 		let output = null;
 
 		try {
-			output = loadLayout(userLayout, defaultLayout, rootLayoutSize);
+			output = loadLayout(Object.keys(userLayout).length ? userLayout : null, defaultLayout, rootLayoutSize);
 
 			if (!findItemByKey(output, 'sideBar') || !findItemByKey(output, 'noteList') || !findItemByKey(output, 'editor')) {
 				throw new Error('"sideBar", "noteList" and "editor" must be present in the layout');
@@ -327,6 +323,13 @@ class MainScreenComponent extends React.Component<Props, State> {
 		if (this.props.mainLayout !== prevProps.mainLayout) {
 			const toSave = saveLayout(this.props.mainLayout);
 			Setting.setValue('ui.layout', toSave);
+		}
+
+		if (prevState.promptOptions !== this.state.promptOptions) {
+			this.props.dispatch({
+				type: !prevState.promptOptions ? 'VISIBLE_DIALOGS_ADD' : 'VISIBLE_DIALOGS_REMOVE',
+				name: 'promptDialog',
+			});
 		}
 	}
 
@@ -567,11 +570,6 @@ class MainScreenComponent extends React.Component<Props, State> {
 		}
 	}
 
-	userWebview_message(event: any) {
-		logger.debug('Got message (WebView => Plugin) (2)', event);
-		PluginService.instance().pluginById(event.pluginId).viewController(event.viewId).emitMessage(event);
-	}
-
 	resizableLayout_resize(event: any) {
 		this.updateMainLayout(event.layout);
 	}
@@ -582,11 +580,22 @@ class MainScreenComponent extends React.Component<Props, State> {
 	}
 
 	resizableLayout_renderItem(key: string, event: any) {
+		// Key should never be undefined but somehow it can happen, also not
+		// clear how. For now in this case render nothing so that the app
+		// doesn't crash.
+		// https://discourse.joplinapp.org/t/rearranging-the-pannels-crushed-the-app-and-generated-fatal-error/14373?u=laurent
+		if (!key) {
+			console.error('resizableLayout_renderItem: Trying to render an item using an empty key. Full layout is:', this.props.mainLayout);
+			return null;
+		}
+
 		const eventEmitter = event.eventEmitter;
+
+		// const viewsToRemove:string[] = [];
 
 		const components: any = {
 			sideBar: () => {
-				return <SideBar key={key} />;
+				return <Sidebar key={key} />;
 			},
 
 			noteList: () => {
@@ -608,30 +617,52 @@ class MainScreenComponent extends React.Component<Props, State> {
 
 		if (components[key]) return components[key]();
 
+		const viewsToRemove: string[] = [];
+
 		if (key.indexOf('plugin-view') === 0) {
 			const viewInfo = pluginUtils.viewInfoByViewId(this.props.plugins, event.item.key);
 
 			if (!viewInfo) {
-				console.warn(`Could not find plugin associated with view: ${event.item.key}`);
-				return null;
+				// Once all startup plugins have loaded, we know that all the
+				// views are ready so we can remove the orphans ones.
+				//
+				// Before they are loaded, there might be views that don't match
+				// any plugins, but that's only because it hasn't loaded yet.
+				if (this.props.startupPluginsLoaded) {
+					console.warn(`Could not find plugin associated with view: ${event.item.key}`);
+					viewsToRemove.push(event.item.key);
+				}
+			} else {
+				const { view, plugin } = viewInfo;
+
+				return <UserWebview
+					key={view.id}
+					viewId={view.id}
+					themeId={this.props.themeId}
+					html={view.html}
+					scripts={view.scripts}
+					pluginId={plugin.id}
+					borderBottom={true}
+					fitToContent={false}
+				/>;
 			}
-
-			const { view, plugin } = viewInfo;
-
-			return <UserWebview
-				key={view.id}
-				viewId={view.id}
-				themeId={this.props.themeId}
-				html={view.html}
-				scripts={view.scripts}
-				pluginId={plugin.id}
-				onMessage={this.userWebview_message}
-				borderBottom={true}
-				fitToContent={false}
-			/>;
+		} else {
+			throw new Error(`Invalid layout component: ${key}`);
 		}
 
-		throw new Error(`Invalid layout component: ${key}`);
+		if (viewsToRemove.length) {
+			window.requestAnimationFrame(() => {
+				let newLayout = this.props.mainLayout;
+				for (const itemKey of viewsToRemove) {
+					newLayout = removeItem(newLayout, itemKey);
+				}
+
+				if (newLayout !== this.props.mainLayout) {
+					console.warn('Removed invalid views:', viewsToRemove);
+					this.updateMainLayout(newLayout);
+				}
+			});
+		}
 	}
 
 	renderPluginDialogs() {
@@ -650,7 +681,6 @@ class MainScreenComponent extends React.Component<Props, State> {
 				html={view.html}
 				scripts={view.scripts}
 				pluginId={plugin.id}
-				onMessage={this.userWebview_message}
 				buttons={view.buttons}
 			/>);
 		}
@@ -746,6 +776,7 @@ const mapStateToProps = (state: AppState) => {
 		focusedField: state.focusedField,
 		layoutMoveMode: state.layoutMoveMode,
 		mainLayout: state.mainLayout,
+		startupPluginsLoaded: state.startupPluginsLoaded,
 	};
 };
 

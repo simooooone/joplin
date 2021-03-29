@@ -81,7 +81,7 @@ https://github.com/laurent22/joplin/blob/dev/readme/welcome/3_synchronising_your
 		background-color: #eee;
 		border: 1px solid #ccc;
 		font-size: .85em;
-		word-break: break-all;
+	/*	word-break: break-all; */
 	}
 	pre code {
 		border: none;
@@ -215,6 +215,8 @@ https://github.com/laurent22/joplin/blob/dev/readme/welcome/3_synchronising_your
 		display: table-cell;
 		display: flex;
 		width: 100%;
+		/* For GSoC: */
+		min-width: 470px;
 	}
 	.nav ul li {
 		display: inline-block;
@@ -315,15 +317,10 @@ https://github.com/laurent22/joplin/blob/dev/readme/welcome/3_synchronising_your
 		<ul>
 			<li class=""><a href="https:&#x2F;&#x2F;joplinapp.org/" title="Home"><i class="fa fa-home"></i></a></li>
 			<li><a href="https://discourse.joplinapp.org" title="Forum">Forum</a></li>
-			<li><a class="help" href="#" title="Menu">Menu</a></li>
-			<!-- <li><a class="gsod" href="https://joplinapp.org/gsod2020/" title="Google Season of Docs 2020">GSoD 2020</a></li> -->
+			<li><a class="gsoc" href="https://joplinapp.org/gsoc2021/index/" title="Google Summer of Code 2021">GSoC 2021</a></li>
 		</ul>
 		<div class="nav-right">
-			<!--
-				<iframe class="share-btn" src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fjoplinapp.org&layout=button&size=small&mobile_iframe=true&width=60&height=20&appId" width="60" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-				<iframe class="share-btn" src="https://platform.twitter.com/widgets/tweet_button.html?url=http%3A%2F%2Fjoplinapp.org" width="62" height="20" title="Tweet" style="border: 0; overflow: hidden;"></iframe>
-			-->
-			<iframe class="share-btn share-btn-github" src="https://ghbtns.com/github-btn.html?user=laurent22&repo=joplin&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+			<iframe class="share-btn share-btn-github" src="https://ghbtns.com/github-btn.html?user=laurent22&repo=joplin&type=star&count=true" frameborder="0" scrolling="0" width="115px" height="20px"></iframe>
 		</div>
 	</div>
 </div>
@@ -377,13 +374,17 @@ https://github.com/laurent22/joplin/blob/dev/readme/welcome/3_synchronising_your
 <li><a href="https://joplinapp.org/spec/sync_lock/">Sync Lock spec</a></li>
 <li><a href="https://joplinapp.org/spec/plugins/">Plugin Architecture spec</a></li>
 <li><a href="https://joplinapp.org/spec/search_sorting/">Search Sorting spec</a></li>
+<li><a href="https://joplinapp.org/spec/server_file_url_format/">Server: File URL Format</a></li>
+<li><a href="https://joplinapp.org/spec/server_delta_sync/">Server: Delta Sync</a></li>
+<li><a href="https://joplinapp.org/spec/server_sharing/">Server: Sharing</a></li>
 </ul>
 </li>
 <li>
-<p>Google Summer of Code 2020</p>
+<p>Google Summer of Code 2021</p>
 <ul>
-<li><a href="https://joplinapp.org/gsoc2020/index/">Google Summer of Code 2020</a></li>
-<li><a href="https://joplinapp.org/gsoc2020/ideas/">Project Ideas</a></li>
+<li><a href="https://joplinapp.org/gsoc2021/index/">Google Summer of Code 2021</a></li>
+<li><a href="https://joplinapp.org/gsoc2021/pull_request_guidelines/">How to submit a GSoC pull request</a></li>
+<li><a href="https://joplinapp.org/gsoc2021/ideas/">Project Ideas</a></li>
 </ul>
 </li>
 <li>
@@ -391,6 +392,7 @@ https://github.com/laurent22/joplin/blob/dev/readme/welcome/3_synchronising_your
 <ul>
 <li><a href="https://joplinapp.org/changelog/">Changelog (Desktop App)</a></li>
 <li><a href="https://joplinapp.org/changelog_cli/">Changelog (CLI App)</a></li>
+<li><a href="https://joplinapp.org/changelog_server/">Changelog (Server)</a></li>
 <li><a href="https://joplinapp.org/stats/">Stats</a></li>
 <li><a href="https://joplinapp.org/donate/">Donate</a></li>
 </ul>
@@ -399,6 +401,8 @@ https://github.com/laurent22/joplin/blob/dev/readme/welcome/3_synchronising_your
 </div>
 
 	<div class="main">
+<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=E8JMYD2LQ8MMA&amp;lc=GB&amp;item_name=Joplin+Development&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"><img src="https://joplinapp.org/images/badges/Donate-PayPal-green.svg" alt="Donate using PayPal"></a> <a href="https://github.com/sponsors/laurent22/"><img src="https://joplinapp.org/images/badges/GitHub-Badge.svg" alt="Sponsor on GitHub"></a> <a href="https://www.patreon.com/joplin"><img src="https://joplinapp.org/images/badges/Patreon-Badge.svg" alt="Become a patron"></a> <a href="https://joplinapp.org/donate/#donations"><img src="https://joplinapp.org/images/badges/Donate-IBAN.svg" alt="Donate using IBAN"></a></p>
+<hr>
 <h1>Synchronising your notes 🔄<a name="synchronising-your-notes" href="#synchronising-your-notes" class="heading-anchor">🔗</a></h1>
 <p>One of the goals of Joplin was to avoid being tied to any particular company or service, whether it is Evernote, Google or Microsoft. As such the synchronisation is designed without any hard dependency to any particular service. You basically choose the service you prefer among those supported, setup the configuration, and the app will be able to sync between your computers or mobile devices.</p>
 <p>The supported cloud services are the following:</p>
@@ -408,7 +412,7 @@ https://github.com/laurent22/joplin/blob/dev/readme/welcome/3_synchronising_your
 <p>Nextcloud is a self-hosted, private cloud solution. It can store documents, images and videos but also calendars, passwords and countless other things and can sync them to your laptop or phone. As you can host your own Nextcloud server, you own both the data on your device and infrastructure used for synchronisation. As such it is a good fit for Joplin.</p>
 <p>To set it up, go to the config screen and select Nextcloud as the synchronisation target. Then input the WebDAV URL (to get it, go to your Nextcloud page, click on Settings in the bottom left corner of the page and copy the URL). Note that it has to be the <strong>full URL</strong>, so for example if you want the notes to be under <code>/Joplin</code>, the URL would be something like <code>https://example.com/remote.php/webdav/Joplin</code> (note that &quot;/Joplin&quot; part). And <strong>make sure to create the &quot;/Joplin&quot; directory in Nextcloud</strong>. Finally set the username and password. If it does not work, please <a href="https://github.com/laurent22/joplin/issues/61#issuecomment-373282608">see this explanation</a> for more details.</p>
 <h2>Setting up OneDrive or WebDAV synchronisation<a name="setting-up-onedrive-or-webdav-synchronisation" href="#setting-up-onedrive-or-webdav-synchronisation" class="heading-anchor">🔗</a></h2>
-<p>OneDrive and WebDAV are also supported as synchronisation services. Please see <a href="https://github.com/laurent22/joplin#exporting">the export documentation</a> for more information.</p>
+<p>OneDrive and WebDAV are also supported as synchronisation services. Please see <a href="https://github.com/laurent22/joplin#synchronisation">the synchronisation documentation</a> for more information.</p>
 <h2>Using End-To-End Encryption<a name="using-end-to-end-encryption" href="#using-end-to-end-encryption" class="heading-anchor">🔗</a></h2>
 <p>Joplin supports end-to-end encryption (E2EE) on all the applications. E2EE is a system where only the owner of the data can read it. It prevents potential eavesdroppers - including telecom providers, internet providers, and even the developers of Joplin from being able to access the data. Please see the <a href="https://joplinapp.org/e2ee/">End-To-End Encryption Tutorial</a> for more information about this feature and how to enable it.</p>
 
@@ -428,13 +432,6 @@ https://github.com/laurent22/joplin/blob/dev/readme/welcome/3_synchronising_your
 		}
 	}
 
-	$('#toc').hide();
-
-	$('.help').click(function(event) {
-		event.preventDefault();
-		$('#toc').show();
-	});
-
 	$(window).scroll(function() {
 		stickyHeader();
 	});
@@ -450,7 +447,7 @@ https://github.com/laurent22/joplin/blob/dev/readme/welcome/3_synchronising_your
 </div></div>
 
 <div class="footer">
-Copyright (C) 2016-2020 Laurent Cozic
+Copyright (C) 2016-2021 Laurent Cozic
 </div>
 </body>
 </html>

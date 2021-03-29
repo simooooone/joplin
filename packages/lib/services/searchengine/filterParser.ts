@@ -118,7 +118,7 @@ const parseQuery = (query: string): Term[] => {
 	}
 
 	// validation
-	let incorrect = result.filter(term => term.name === 'type' || term.name === 'iscompleted' || term.name === 'notebook')
+	let incorrect = result.filter(term => term.name === 'type' || term.name === 'iscompleted')
 		.find(x => x.negated);
 	if (incorrect) throw new Error(`${incorrect.name} can't be negated`);
 
@@ -139,7 +139,7 @@ const trimQuotes = (str: string): string => str.startsWith('"') ? str.substr(1, 
 export default function filterParser(searchString: string) {
 	searchString = searchString.trim();
 
-	const result =  parseQuery(searchString);
+	const result = parseQuery(searchString);
 
 	return result;
 }

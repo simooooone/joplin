@@ -81,7 +81,7 @@ https://github.com/laurent22/joplin/blob/dev/readme/markdown.md
 		background-color: #eee;
 		border: 1px solid #ccc;
 		font-size: .85em;
-		word-break: break-all;
+	/*	word-break: break-all; */
 	}
 	pre code {
 		border: none;
@@ -215,6 +215,8 @@ https://github.com/laurent22/joplin/blob/dev/readme/markdown.md
 		display: table-cell;
 		display: flex;
 		width: 100%;
+		/* For GSoC: */
+		min-width: 470px;
 	}
 	.nav ul li {
 		display: inline-block;
@@ -315,15 +317,10 @@ https://github.com/laurent22/joplin/blob/dev/readme/markdown.md
 		<ul>
 			<li class=""><a href="https:&#x2F;&#x2F;joplinapp.org/" title="Home"><i class="fa fa-home"></i></a></li>
 			<li><a href="https://discourse.joplinapp.org" title="Forum">Forum</a></li>
-			<li><a class="help" href="#" title="Menu">Menu</a></li>
-			<!-- <li><a class="gsod" href="https://joplinapp.org/gsod2020/" title="Google Season of Docs 2020">GSoD 2020</a></li> -->
+			<li><a class="gsoc" href="https://joplinapp.org/gsoc2021/index/" title="Google Summer of Code 2021">GSoC 2021</a></li>
 		</ul>
 		<div class="nav-right">
-			<!--
-				<iframe class="share-btn" src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fjoplinapp.org&layout=button&size=small&mobile_iframe=true&width=60&height=20&appId" width="60" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-				<iframe class="share-btn" src="https://platform.twitter.com/widgets/tweet_button.html?url=http%3A%2F%2Fjoplinapp.org" width="62" height="20" title="Tweet" style="border: 0; overflow: hidden;"></iframe>
-			-->
-			<iframe class="share-btn share-btn-github" src="https://ghbtns.com/github-btn.html?user=laurent22&repo=joplin&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+			<iframe class="share-btn share-btn-github" src="https://ghbtns.com/github-btn.html?user=laurent22&repo=joplin&type=star&count=true" frameborder="0" scrolling="0" width="115px" height="20px"></iframe>
 		</div>
 	</div>
 </div>
@@ -377,13 +374,17 @@ https://github.com/laurent22/joplin/blob/dev/readme/markdown.md
 <li><a href="https://joplinapp.org/spec/sync_lock/">Sync Lock spec</a></li>
 <li><a href="https://joplinapp.org/spec/plugins/">Plugin Architecture spec</a></li>
 <li><a href="https://joplinapp.org/spec/search_sorting/">Search Sorting spec</a></li>
+<li><a href="https://joplinapp.org/spec/server_file_url_format/">Server: File URL Format</a></li>
+<li><a href="https://joplinapp.org/spec/server_delta_sync/">Server: Delta Sync</a></li>
+<li><a href="https://joplinapp.org/spec/server_sharing/">Server: Sharing</a></li>
 </ul>
 </li>
 <li>
-<p>Google Summer of Code 2020</p>
+<p>Google Summer of Code 2021</p>
 <ul>
-<li><a href="https://joplinapp.org/gsoc2020/index/">Google Summer of Code 2020</a></li>
-<li><a href="https://joplinapp.org/gsoc2020/ideas/">Project Ideas</a></li>
+<li><a href="https://joplinapp.org/gsoc2021/index/">Google Summer of Code 2021</a></li>
+<li><a href="https://joplinapp.org/gsoc2021/pull_request_guidelines/">How to submit a GSoC pull request</a></li>
+<li><a href="https://joplinapp.org/gsoc2021/ideas/">Project Ideas</a></li>
 </ul>
 </li>
 <li>
@@ -391,6 +392,7 @@ https://github.com/laurent22/joplin/blob/dev/readme/markdown.md
 <ul>
 <li><a href="https://joplinapp.org/changelog/">Changelog (Desktop App)</a></li>
 <li><a href="https://joplinapp.org/changelog_cli/">Changelog (CLI App)</a></li>
+<li><a href="https://joplinapp.org/changelog_server/">Changelog (Server)</a></li>
 <li><a href="https://joplinapp.org/stats/">Stats</a></li>
 <li><a href="https://joplinapp.org/donate/">Donate</a></li>
 </ul>
@@ -399,6 +401,8 @@ https://github.com/laurent22/joplin/blob/dev/readme/markdown.md
 </div>
 
 	<div class="main">
+<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=E8JMYD2LQ8MMA&amp;lc=GB&amp;item_name=Joplin+Development&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"><img src="https://joplinapp.org/images/badges/Donate-PayPal-green.svg" alt="Donate using PayPal"></a> <a href="https://github.com/sponsors/laurent22/"><img src="https://joplinapp.org/images/badges/GitHub-Badge.svg" alt="Sponsor on GitHub"></a> <a href="https://www.patreon.com/joplin"><img src="https://joplinapp.org/images/badges/Patreon-Badge.svg" alt="Become a patron"></a> <a href="https://joplinapp.org/donate/#donations"><img src="https://joplinapp.org/images/badges/Donate-IBAN.svg" alt="Donate using IBAN"></a></p>
+<hr>
 <h1>Markdown Guide<a name="markdown-guide" href="#markdown-guide" class="heading-anchor">🔗</a></h1>
 <p>Markdown is a simple way to format text that looks great on any device. It doesn't do anything fancy like change the font size, color, or type — just the essentials, using keyboard symbols you already know. Since it is plain text, it is an easy way to author notes and documents and when needed it can be converted to a rich text HTML document.</p>
 <p>Joplin desktop and mobile applications can display both the Markdown text and the rendered rich text document.</p>
@@ -640,6 +644,20 @@ graph TD;
 <td><a href="https://joplinapp.org/images/md_plugins/katex_plugin.jpg">View</a></td>
 </tr>
 <tr>
+<td><a href="https://fountain.io">Fountain</a></td>
+<td><code>```fountain</code><br/>Your screenplay...<br/><code>```</code></td>
+<td>Adds support for the Fountain markup language, a plain text markup language for screenwriting</td>
+<td>no</td>
+<td><a href="https://joplinapp.org/images/md_plugins/fountain_plugin.jpg">View</a></td>
+</tr>
+<tr>
+<td><a href="https://mermaid-js.github.io/mermaid/">Mermaid</a></td>
+<td><code>```mermaid</code><br/>mermaid syntax...<br/><code>```</code></td>
+<td>See <a href="https://mermaid-js.github.io/mermaid/#/examples">plugin page</a> for full description</td>
+<td>yes</td>
+<td><a href="https://joplinapp.org/images/md_plugins/mermaid.jpg">View</a></td>
+</tr>
+<tr>
 <td><a href="https://github.com/markdown-it/markdown-it-mark">Mark</a></td>
 <td><code>==marked==</code></td>
 <td>Transforms into <code>&lt;mark&gt;marked&lt;/mark&gt;</code> (highlighted)</td>
@@ -657,7 +675,7 @@ graph TD;
 <td><a href="https://github.com/nagaozen/markdown-it-toc-done-right">TOC</a></td>
 <td>Any of <code>${toc}, [[toc]], [toc], [[_toc_]]</code></td>
 <td>Adds a table of contents to the location of the toc page. Based on headings and sub-headings</td>
-<td>no</td>
+<td>yes</td>
 <td><a href="https://joplinapp.org/images/md_plugins/toc_plugin.jpg">View</a></td>
 </tr>
 <tr>
@@ -709,20 +727,6 @@ graph TD;
 <td>no</td>
 <td><a href="https://joplinapp.org/images/md_plugins/multitable_plugin.jpg">View</a></td>
 </tr>
-<tr>
-<td><a href="https://fountain.io">Fountain</a></td>
-<td><code>```fountain</code><br/>Your screenplay...<br/><code>```</code></td>
-<td>Adds support for the Fountain markup language, a plain text markup language for screenwriting</td>
-<td>no</td>
-<td><a href="https://joplinapp.org/images/md_plugins/fountain_plugin.jpg">View</a></td>
-</tr>
-<tr>
-<td><a href="https://mermaid-js.github.io/mermaid/">Mermaid</a></td>
-<td><code>```mermaid</code><br/>mermaid syntax...<br/><code>```</code></td>
-<td>See <a href="https://mermaid-js.github.io/mermaid/#/examples">plugin page</a> for full description</td>
-<td>no</td>
-<td><a href="https://joplinapp.org/images/md_plugins/mermaid.jpg">View</a></td>
-</tr>
 </tbody>
 </table>
 
@@ -742,13 +746,6 @@ graph TD;
 		}
 	}
 
-	$('#toc').hide();
-
-	$('.help').click(function(event) {
-		event.preventDefault();
-		$('#toc').show();
-	});
-
 	$(window).scroll(function() {
 		stickyHeader();
 	});
@@ -764,7 +761,7 @@ graph TD;
 </div></div>
 
 <div class="footer">
-Copyright (C) 2016-2020 Laurent Cozic
+Copyright (C) 2016-2021 Laurent Cozic
 </div>
 </body>
 </html>

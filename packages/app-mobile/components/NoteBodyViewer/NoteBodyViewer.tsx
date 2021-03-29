@@ -1,4 +1,4 @@
-import { useRef, useMemo, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 
 import Setting from '@joplin/lib/models/Setting';
 import useSource from './hooks/useSource';
@@ -9,8 +9,8 @@ const React = require('react');
 const { View } = require('react-native');
 const { WebView } = require('react-native-webview');
 const { themeStyle } = require('../global-style.js');
-const BackButtonDialogBox = require('../BackButtonDialogBox').default;
-const { reg } = require('@joplin/lib/registry.js');
+import BackButtonDialogBox from '../BackButtonDialogBox';
+import { reg } from '@joplin/lib/registry';
 
 interface Props {
 	themeId: number;
@@ -27,12 +27,12 @@ interface Props {
 	onLoadEnd?: Function;
 }
 
+const webViewStyle = {
+	backgroundColor: 'transparent',
+};
+
 export default function NoteBodyViewer(props: Props) {
 	const theme = themeStyle(props.themeId);
-
-	const webViewStyle: any = useMemo(() => {
-		return { backgroundColor: theme.backgroundColor };
-	}, [theme.backgroundColor]);
 
 	const dialogBoxRef = useRef(null);
 
@@ -89,6 +89,8 @@ export default function NoteBodyViewer(props: Props) {
 	// since the WebView package went through many versions it's possible that
 	// the above no longer applies.
 
+	const BackButtonDialogBox_ = BackButtonDialogBox as any;
+
 	return (
 		<View style={props.style}>
 			<WebView
@@ -105,7 +107,7 @@ export default function NoteBodyViewer(props: Props) {
 				onError={onError}
 				onMessage={onMessage}
 			/>
-			<BackButtonDialogBox ref={dialogBoxRef}/>
+			<BackButtonDialogBox_ ref={dialogBoxRef}/>
 		</View>
 	);
 }

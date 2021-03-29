@@ -15,15 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
 
 #: packages/app-desktop/bridge.js:106 packages/app-desktop/bridge.js:110
 #: packages/app-desktop/bridge.js:126 packages/app-desktop/bridge.js:134
 #: packages/app-desktop/checkForUpdates.js:139
 #: packages/app-desktop/gui/DialogButtonRow.min.js:30
-#: packages/app-desktop/gui/MenuBar.js:309
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:181
+#: packages/app-desktop/gui/MenuBar.js:373
 #: packages/app-desktop/gui/ConfigScreen/ButtonBar.js:22
 #: packages/app-desktop/gui/PromptDialog.min.js:235
 #: packages/app-desktop/services/plugins/UserWebviewDialogButtonBar.js:20
@@ -37,14 +34,14 @@ msgstr "확인"
 #: packages/app-desktop/bridge.js:110 packages/app-desktop/bridge.js:126
 #: packages/app-desktop/checkForUpdates.js:154
 #: packages/app-desktop/gui/DialogButtonRow.min.js:38
-#: packages/app-desktop/gui/SideBar/SideBar.js:191
-#: packages/app-desktop/gui/SideBar/SideBar.js:412
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:201
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:430
 #: packages/app-desktop/gui/KeymapConfig/ShortcutRecorder.js:52
-#: packages/app-desktop/gui/utils/NoteListUtils.js:164
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:528
+#: packages/app-desktop/gui/utils/NoteListUtils.js:169
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:535
 #: packages/app-desktop/gui/PromptDialog.min.js:242
 #: packages/app-desktop/gui/NoteList/NoteList.js:163
-#: packages/app-desktop/gui/ResourceScreen.js:95
+#: packages/app-desktop/gui/ResourceScreen.js:96
 #: packages/app-desktop/services/plugins/UserWebviewDialogButtonBar.js:21
 #: packages/app-mobile/components/ModalDialog.js:70
 #: packages/app-mobile/components/SelectDateTimeDialog.js:82
@@ -55,14 +52,14 @@ msgstr "확인"
 #: packages/app-mobile/components/screens/encryption-config.js:185
 #: packages/app-mobile/components/screens/Note.js:98
 #: packages/app-mobile/components/screens/Note.js:506
-#: packages/lib/shim-init-node.js:137
+#: packages/lib/shim-init-node.js:148
 msgid "Cancel"
 msgstr "취소"
 
 #: packages/app-desktop/bridge.js:188
 msgid ""
 "The app is now going to close. Please relaunch it to complete the process."
-msgstr "애플리케이션이 곧 종료됩니다. 프로세스를 완료하려면 다시 실해주세요."
+msgstr "애플리케이션이 곧 종료됩니다. 프로세스를 완료하려면 다시 실행해주세요."
 
 #: packages/app-desktop/plugins/GotoAnything.js:431
 msgid ""
@@ -82,21 +79,21 @@ msgstr "가고자 하는 곳으로 이동..."
 #: packages/app-desktop/plugins/GotoAnything.js:463
 #: packages/app-desktop/gui/KeymapConfig/utils/getLabel.js:28
 msgid "Command palette"
-msgstr "명령 팔레트를"
+msgstr "명령 팔레트"
 
-#: packages/app-desktop/InteropServiceHelper.js:153
+#: packages/app-desktop/InteropServiceHelper.js:154
 #, javascript-format
 msgid "Exporting to \"%s\" as \"%s\" format. Please wait..."
 msgstr "\"%s\"에 \"%s\" 포맷으로 내보내는 중입니다. 잠시만 기다려주세요..."
 
-#: packages/app-desktop/InteropServiceHelper.js:171
+#: packages/app-desktop/InteropServiceHelper.js:174
 #, javascript-format
 msgid "Could not export notes: %s"
 msgstr "노트를 내보낼 수 없습니다: %s"
 
 #: packages/app-desktop/checkForUpdates.js:138
 msgid "Current version is up-to-date."
-msgstr "현재 최신 버전을 사용중입니다."
+msgstr "현재 최신 버전을 사용 중입니다."
 
 #: packages/app-desktop/checkForUpdates.js:148
 #, javascript-format
@@ -105,7 +102,7 @@ msgstr "%s (프리-릴리즈)"
 
 #: packages/app-desktop/checkForUpdates.js:152
 msgid "An update is available, do you want to download it now?"
-msgstr "업데이트가 있습니다. 지금 다운로드 할까요?"
+msgstr "업데이트가 있습니다. 지금 내려 받을까요?"
 
 #: packages/app-desktop/checkForUpdates.js:153
 #, javascript-format
@@ -123,13 +120,7 @@ msgstr "다운로드"
 
 #: packages/app-desktop/checkForUpdates.js:154
 msgid "Full Release Notes"
-msgstr "전체 릴리즈된 노트들"
-
-#: packages/app-desktop/gui/SearchBar/SearchBar.js:113
-#: packages/app-desktop/gui/KeymapConfig/KeymapConfigScreen.js:120
-#: packages/app-desktop/gui/NoteSearchBar.min.js:167
-msgid "Search..."
-msgstr "찾기..."
+msgstr "전체 릴리즈 노트"
 
 #: packages/app-desktop/gui/NoteRevisionViewer.min.js:75
 #, javascript-format
@@ -141,10 +132,10 @@ msgid "This note has no history"
 msgstr "이 노트엔 역사가 없습니다"
 
 #: packages/app-desktop/gui/NoteRevisionViewer.min.js:142
-#: packages/app-desktop/gui/NoteEditor/utils/useMessageHandler.js:112
+#: packages/app-desktop/gui/NoteEditor/utils/useMessageHandler.js:122
 #, javascript-format
 msgid "Unsupported link or message: %s"
-msgstr "지원하지 않는 링크 또는 메세지: %s"
+msgstr "지원하지 않는 링크 또는 메시지: %s"
 
 #: packages/app-desktop/gui/NoteRevisionViewer.min.js:177
 #: packages/app-desktop/gui/KeymapConfig/ShortcutRecorder.js:51
@@ -161,17 +152,17 @@ msgstr ""
 "될 것입니다. 현재 버전의 노트는 이동하거나 수정되지 않습니다."
 
 #: packages/app-desktop/gui/NoteRevisionViewer.min.js:187
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:528
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:535
 #: packages/app-desktop/gui/ConfigScreen/ButtonBar.js:30
 #: packages/lib/commands/historyBackward.js:17
 msgid "Back"
 msgstr "뒤로 가기"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:166
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:176
 msgid "Remove"
 msgstr "삭제"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:169
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:179
 #: packages/app-mobile/components/side-menu-content.js:148
 #, javascript-format
 msgid ""
@@ -183,51 +174,50 @@ msgstr ""
 "\n"
 "이 노트북 안에 있는 모든 노트와 더불어 하위 노트북들도 함께 삭제됩니다."
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:170
-#: packages/app-desktop/gui/utils/NoteListUtils.js:135
-#: packages/app-desktop/gui/utils/NoteListUtils.js:164
-#: packages/app-desktop/gui/ConfigScreen/controls/PluginsStates.js:95
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:180
+#: packages/app-desktop/gui/utils/NoteListUtils.js:140
+#: packages/app-desktop/gui/utils/NoteListUtils.js:169
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginBox.js:122
 #: packages/app-desktop/gui/ResourceScreen.js:47
-#: packages/app-desktop/gui/ResourceScreen.js:95
+#: packages/app-desktop/gui/ResourceScreen.js:96
 #: packages/app-mobile/components/side-menu-content.js:146
 #: packages/app-mobile/components/screens/Note.js:830
 msgid "Delete"
 msgstr "삭제"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:174
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:184
 #, javascript-format
 msgid "Remove tag \"%s\" from all notes?"
 msgstr "모든 노트에서 “%s” 태그를 제거할까요?"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:177
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:187
 msgid "Remove this search from the sidebar?"
 msgstr "사이드바에서 이 검색 항목을 제거할까요?"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:228
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:238
 #: packages/app-desktop/gui/KeymapConfig/KeymapConfigScreen.js:122
-#: packages/app-desktop/gui/MenuBar.js:415
-#: packages/app-desktop/gui/utils/NoteListUtils.js:131
+#: packages/app-desktop/gui/utils/NoteListUtils.js:136
 msgid "Export"
 msgstr "내보내기"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:283
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:301
 #: packages/app-mobile/components/side-menu-content.js:360
 #: packages/app-mobile/components/screens/notes.js:188
 msgid "All notes"
 msgstr "모든 노트"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:412
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:430
 #: packages/app-mobile/components/side-menu-content.js:338
 #: packages/lib/commands/synchronize.js:18
 msgid "Synchronise"
 msgstr "동기화"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:436
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:455
 #: packages/app-mobile/components/side-menu-content.js:364
 msgid "Notebooks"
 msgstr "노트북"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:448
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:467
 #: packages/app-desktop/gui/MainScreen/commands/setTags.js:17
 #: packages/app-mobile/components/side-menu-content.js:314
 #: packages/app-mobile/components/screens/tags.js:101
@@ -235,26 +225,26 @@ msgstr "노트북"
 msgid "Tags"
 msgstr "태그"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:459
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:478
 #: packages/app-mobile/components/side-menu-content.js:325
 #, javascript-format
 msgid "Decrypting items: %d/%d"
 msgstr "복호화 항목: %d/%d"
 
-#: packages/app-desktop/gui/SideBar/SideBar.js:463
+#: packages/app-desktop/gui/Sidebar/Sidebar.js:482
 #: packages/app-mobile/components/side-menu-content.js:330
 #, javascript-format
 msgid "Fetching resources: %d/%d"
 msgstr "리소스 가져오는 중: %d/%d"
 
-#: packages/app-desktop/gui/SideBar/commands/focusElementSideBar.js:17
+#: packages/app-desktop/gui/Sidebar/commands/focusElementSideBar.js:17
 msgid "Sidebar"
 msgstr "사이드바"
 
-#: packages/app-desktop/gui/SideBar/commands/focusElementSideBar.js:18
+#: packages/app-desktop/gui/Sidebar/commands/focusElementSideBar.js:18
 #: packages/app-desktop/gui/NoteEditor/commands/focusElementNoteTitle.js:17
 #: packages/app-desktop/gui/NoteEditor/commands/focusElementNoteBody.js:17
-#: packages/app-desktop/gui/MenuBar.js:539
+#: packages/app-desktop/gui/MenuBar.js:614
 #: packages/app-desktop/gui/NoteList/commands/focusElementNoteList.js:18
 msgid "Focus"
 msgstr "강조"
@@ -273,29 +263,29 @@ msgstr "전부 재시도"
 msgid "Retry"
 msgstr "재시도"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:165
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:178
 msgid "strong text"
 msgstr "굵게"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:166
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:179
 msgid "emphasised text"
 msgstr "강조"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:168
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:181
 msgid "Insert Hyperlink"
 msgstr "하이퍼링크 삽입"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:202
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:204
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:205
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:215
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:217
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:218
 msgid "List item"
 msgstr "목록 추가"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:454
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:496
 msgid "Layout"
 msgstr "배치"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:454
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:496
 #, javascript-format
 msgid ""
 "This note has no content. Click on \"%s\" to toggle the editor and edit the "
@@ -304,21 +294,21 @@ msgstr ""
 "비어있는 노트입니다. \"%s\" 항목을 선택해서 편집기를 전환하고 노트를 편집하세"
 "요."
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:564
-#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:90
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:605
+#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:97
 #: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:18
 msgid "Cut"
 msgstr "잘라내기"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:571
-#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:98
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:612
+#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:105
 #: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:13
-#: packages/app-desktop/gui/MenuBar.js:309
+#: packages/app-desktop/gui/MenuBar.js:373
 msgid "Copy"
 msgstr "복사"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:578
-#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:105
+#: packages/app-desktop/gui/NoteEditor/NoteBody/CodeMirror/CodeMirror.js:619
+#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:112
 #: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:23
 msgid "Paste"
 msgstr "붙여넣기"
@@ -327,40 +317,40 @@ msgstr "붙여넣기"
 msgid "Checkbox list"
 msgstr "선택상자 목록"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:521
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:447
+#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:530
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:452
 #: packages/app-mobile/components/screens/Note.js:1013
 msgid "Edit"
 msgstr "편집"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:577
+#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:586
 #: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:53
 #: packages/app-mobile/components/screens/Note.js:771
 msgid "Attach file"
 msgstr "파일 첨부"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:586
+#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:595
 msgid "Code Block"
 msgstr "코드 블록"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:595
+#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:604
 msgid "Inline Code"
 msgstr "인라인 코드"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:610
+#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:619
 #: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:83
 msgid "Insert Date Time"
 msgstr "날짜와 시간 입력"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:996
+#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:1013
 msgid "Drop notes or files here"
 msgstr "노트나 파일을 여기에 끌어놓습니다"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:996
+#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:1013
 msgid "Code View"
 msgstr "코드 보기"
 
-#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:996
+#: packages/app-desktop/gui/NoteEditor/NoteBody/TinyMCE/TinyMCE.js:1013
 #, javascript-format
 msgid ""
 "Please wait for all attachments to be downloaded and decrypted. You may also "
@@ -369,59 +359,79 @@ msgstr ""
 "모든 첨부 파일들이 다운로드 및 복호화될 때까지 기다려주세요. %s를 통해 이 노"
 "트를 편집하도록 전환할 수 있습니다."
 
-#: packages/app-desktop/gui/NoteEditor/utils/useMessageHandler.js:72
+#: packages/app-desktop/gui/NoteEditor/utils/useMessageHandler.js:74
 msgid "There was an error downloading this attachment:"
-msgstr "첨부 파일을 다운로드하던 중에 오류가 발생했습니다:"
+msgstr "첨부 파일을 내려 받는 중에 오류가 발생했습니다:"
 
-#: packages/app-desktop/gui/NoteEditor/utils/useMessageHandler.js:75
+#: packages/app-desktop/gui/NoteEditor/utils/useMessageHandler.js:77
 #: packages/lib/services/ResourceEditWatcher/index.js:196
 msgid "This attachment is not downloaded or not decrypted yet"
 msgstr "이 첨부 파일은 아직 다운로드 또는 복호화 되지 않았습니다"
 
-#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:48
+#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:55
 msgid "Open..."
 msgstr "열기..."
 
-#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:61
+#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:68
 msgid "Save as..."
 msgstr "다른 이름으로 저장..."
 
-#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:74
+#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:81
 msgid "Reveal file in folder"
 msgstr "폴더에 있는 파일 표시"
 
-#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:82
+#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:89
 msgid "Copy path to clipboard"
 msgstr "경로를 클립보드에 복사"
 
-#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:113
+#: packages/app-desktop/gui/NoteEditor/utils/contextMenu.js:120
 msgid "Copy Link Address"
 msgstr "링크 주소 복사"
 
-#: packages/app-desktop/gui/NoteEditor/NoteTitle/NoteTitleBar.js:78
+#: packages/app-desktop/gui/NoteEditor/NoteTitle/NoteTitleBar.js:79
 msgid "to-do"
 msgstr "할 일"
 
-#: packages/app-desktop/gui/NoteEditor/NoteTitle/NoteTitleBar.js:78
+#: packages/app-desktop/gui/NoteEditor/NoteTitle/NoteTitleBar.js:79
 msgid "note"
 msgstr "노트"
 
-#: packages/app-desktop/gui/NoteEditor/NoteTitle/NoteTitleBar.js:78
+#: packages/app-desktop/gui/NoteEditor/NoteTitle/NoteTitleBar.js:79
 #, javascript-format
 msgid "Creating new %s..."
 msgstr "%s 새로 만들기..."
 
-#: packages/app-desktop/gui/NoteEditor/NoteEditor.js:370
+#: packages/app-desktop/gui/NoteEditor/NoteEditor.js:284
+msgid "Click to add tags..."
+msgstr "태그를 추가하려면 클릭하세요..."
+
+#: packages/app-desktop/gui/NoteEditor/NoteEditor.js:337
+msgid ""
+"This Rich Text editor has a number of limitations and it is recommended to "
+"be aware of them before using it."
+msgstr ""
+"서식 있는 텍스트 편집기에는 몇가지의 제한 사항들이 있으며, 사용하기 전에 이러"
+"한 제약 사항들을 미리 알고 있는 것이 좋습니다."
+
+#: packages/app-desktop/gui/NoteEditor/NoteEditor.js:341
+msgid "Read more about it"
+msgstr "더 자세히 알아보기"
+
+#: packages/app-desktop/gui/NoteEditor/NoteEditor.js:346
+msgid "Dismiss"
+msgstr "취소"
+
+#: packages/app-desktop/gui/NoteEditor/NoteEditor.js:382
 msgid "The following attachments are being watched for changes:"
 msgstr "다음 첨부 파일들이 변경되었는지 감시하고 있습니다:"
 
-#: packages/app-desktop/gui/NoteEditor/NoteEditor.js:373
+#: packages/app-desktop/gui/NoteEditor/NoteEditor.js:385
 msgid ""
 "The attachments will no longer be watched when you switch to a different "
 "note."
 msgstr "다른 노트로 전환하면 첨부 파일이 더 이상 감시되지 않습니다."
 
-#: packages/app-desktop/gui/NoteEditor/NoteEditor.js:378
+#: packages/app-desktop/gui/NoteEditor/NoteEditor.js:391
 #, javascript-format
 msgid "In: %s"
 msgstr "내부: %s"
@@ -466,6 +476,42 @@ msgstr "표제"
 msgid "Horizontal Rule"
 msgstr "수평줄"
 
+#: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:88
+msgid "Delete line"
+msgstr "줄 삭제"
+
+#: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:92
+msgid "Undo"
+msgstr "실행 취소"
+
+#: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:96
+msgid "Redo"
+msgstr "다시 실행"
+
+#: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:100
+msgid "Indent less"
+msgstr "들여쓰기 제거"
+
+#: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:104
+msgid "Indent more"
+msgstr "들여쓰기 추가"
+
+#: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:108
+msgid "Toggle comment"
+msgstr "주석 전환"
+
+#: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:112
+msgid "Sort selected lines"
+msgstr "선택된 줄들을 정렬"
+
+#: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:116
+msgid "Swap line up"
+msgstr "윗줄과 위치 바꾸기"
+
+#: packages/app-desktop/gui/NoteEditor/commands/editorCommandDeclarations.js:120
+msgid "Swap line down"
+msgstr "아랫줄과 위치 바꾸기"
+
 #: packages/app-desktop/gui/NoteEditor/commands/focusElementNoteTitle.js:16
 msgid "Note title"
 msgstr "노트 제목"
@@ -493,6 +539,8 @@ msgstr "생성됨"
 
 #: packages/app-desktop/gui/NotePropertiesDialog.min.js:29
 #: packages/app-desktop/gui/EncryptionConfigScreen.min.js:324
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginBox.js:141
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginBox.js:143
 msgid "Updated"
 msgstr "갱신됨"
 
@@ -509,7 +557,7 @@ msgid "URL"
 msgstr "URL"
 
 #: packages/app-desktop/gui/NotePropertiesDialog.min.js:33
-#: packages/lib/models/Setting.js:1331
+#: packages/lib/models/Setting.js:1528
 msgid "Note History"
 msgstr "노트 역사"
 
@@ -527,7 +575,7 @@ msgid "Note properties"
 msgstr "노트 속성"
 
 #: packages/app-desktop/gui/KeymapConfig/KeymapConfigScreen.js:63
-#: packages/lib/services/KeymapService.js:415
+#: packages/lib/services/KeymapService.js:176
 #, javascript-format
 msgid "Error: %s"
 msgstr "오류: %s"
@@ -535,13 +583,19 @@ msgstr "오류: %s"
 #: packages/app-desktop/gui/KeymapConfig/KeymapConfigScreen.js:110
 #: packages/app-desktop/gui/EncryptionConfigScreen.min.js:443
 #: packages/app-mobile/components/screens/encryption-config.js:280
-#: packages/lib/models/Setting.js:642 packages/app-cli/app/command-e2ee.js:110
+#: packages/lib/models/Setting.js:750 packages/app-cli/app/command-e2ee.js:110
 msgid "Disabled"
 msgstr "사용하지 않음"
 
+#: packages/app-desktop/gui/KeymapConfig/KeymapConfigScreen.js:120
+#: packages/app-desktop/gui/NoteSearchBar.min.js:168
+#: packages/app-desktop/gui/lib/SearchInput/SearchInput.js:38
+msgid "Search..."
+msgstr "찾기..."
+
 #: packages/app-desktop/gui/KeymapConfig/KeymapConfigScreen.js:121
-#: packages/app-desktop/gui/MenuBar.js:365
-#: packages/app-desktop/gui/MenuBar.js:412 packages/app-desktop/gui/Root.js:99
+#: packages/app-desktop/gui/MenuBar.js:429
+#: packages/app-desktop/gui/MenuBar.js:476 packages/app-desktop/gui/Root.js:99
 msgid "Import"
 msgstr "가져오기"
 
@@ -554,22 +608,22 @@ msgid "Keyboard Shortcut"
 msgstr "키보드 바로가기"
 
 #: packages/app-desktop/gui/KeymapConfig/utils/getLabel.js:14
-#: packages/app-desktop/gui/MenuBar.js:148 packages/app-desktop/app.js:338
+#: packages/app-desktop/gui/MenuBar.js:212 packages/app-desktop/app.js:367
 msgid "Quit"
 msgstr "종료"
 
 #: packages/app-desktop/gui/KeymapConfig/utils/getLabel.js:16
-#: packages/app-desktop/gui/MenuBar.js:252
+#: packages/app-desktop/gui/MenuBar.js:316
 msgid "Insert template"
 msgstr "템플릿 삽입"
 
 #: packages/app-desktop/gui/KeymapConfig/utils/getLabel.js:18
-#: packages/app-desktop/gui/MenuBar.js:500
+#: packages/app-desktop/gui/MenuBar.js:575
 msgid "Actual Size"
 msgstr "실제 크기"
 
 #: packages/app-desktop/gui/KeymapConfig/utils/getLabel.js:22
-#: packages/app-desktop/gui/MenuBar.js:561
+#: packages/app-desktop/gui/MenuBar.js:636
 msgid "Website and documentation"
 msgstr "웹사이트 및 참고 문서"
 
@@ -578,7 +632,7 @@ msgid "Hide Joplin"
 msgstr "Joplin 숨기기"
 
 #: packages/app-desktop/gui/KeymapConfig/utils/getLabel.js:26
-#: packages/app-desktop/gui/MenuBar.js:400
+#: packages/app-desktop/gui/MenuBar.js:464
 msgid "Close Window"
 msgstr "창 닫기"
 
@@ -587,7 +641,7 @@ msgid "Preferences"
 msgstr "설정"
 
 #: packages/app-desktop/gui/KeymapConfig/utils/getLabel.js:30
-#: packages/app-desktop/gui/MenuBar.js:276 packages/app-desktop/gui/Root.js:100
+#: packages/app-desktop/gui/MenuBar.js:340 packages/app-desktop/gui/Root.js:100
 msgid "Options"
 msgstr "옵션"
 
@@ -613,7 +667,7 @@ msgstr ""
 msgid "Save"
 msgstr "저장"
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:402
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:405
 msgid ""
 "The sync target needs to be upgraded before Joplin can sync. The operation "
 "may take a few minutes to complete and the app needs to be restarted. To "
@@ -623,47 +677,47 @@ msgstr ""
 "완료되기 위해서 몇 분 정도 걸릴 수 있으며, 앱을 다시 시작해야 합니다. 계속하"
 "려면 링크를 눌러주세요."
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:404
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:407
 msgid "Restart and upgrade"
 msgstr "재시작 및 업그레이드"
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:408
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:411
 msgid "Some items cannot be synchronised."
 msgstr "일부 항목들은 동기화할 수 없습니다."
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:410
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:416
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:428
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:413
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:419
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:431
 msgid "View them now"
 msgstr "지금 나타내기"
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:414
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:417
 msgid "Some items cannot be decrypted."
 msgstr "일부 항목들은 암호화할 수 없습니다."
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:420
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:423
 msgid "One or more master keys need a password."
-msgstr "하나 혹은 그 이상의 마스터 키 비밀번호를 입력해주세요."
+msgstr "하나 혹은 그 이상의 마스터 키 비밀번호가 필요합니다."
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:422
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:425
 msgid "Set the password"
 msgstr "암호 설정"
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:426
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:429
 msgid "One of your master keys use an obsolete encryption method."
 msgstr "마스터 키 중 하나가 오래된 암호화 방식을 사용합니다."
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:432
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:435
 msgid ""
 "The default encryption method has been changed, you should re-encrypt your "
 "data."
-msgstr "기본 암호과 구문이 변경 되었습니다. 데이터를 재암호화 해야합니다."
+msgstr "기본 암호 방법이 변경되었습니다. 데이터를 다시 암호화해야 합니다."
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:434
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:437
 msgid "More info"
 msgstr "더 많은 정보"
 
-#: packages/app-desktop/gui/MainScreen/MainScreen.js:527
+#: packages/app-desktop/gui/MainScreen/MainScreen.js:559
 msgid "Use the arrows to move the layout items. Press \"Escape\" to exit."
 msgstr ""
 "레이아웃 항목을 옮기려면 화살표를 사용하세요. \"ESC\"키를 눌러 종료합니다."
@@ -731,7 +785,7 @@ msgstr "편집기 배치 형태 전환"
 
 #: packages/app-desktop/gui/MainScreen/commands/toggleEditors.js:18
 msgid "Toggle editors"
-msgstr "편집기 배치 형태 전환"
+msgstr "편집기 전환"
 
 #: packages/app-desktop/gui/MainScreen/commands/toggleLayoutMoveMode.js:16
 msgid "Change application layout"
@@ -776,7 +830,7 @@ msgstr "인쇄"
 
 #: packages/app-desktop/gui/MainScreen/commands/print.js:26
 msgid "Only one note can be printed at a time."
-msgstr "한 번에 오직 하나의 노트만 출력할 수 있습니다."
+msgstr "한 번에 하나의 노트만 출력할 수 있습니다."
 
 #: packages/app-desktop/gui/DropboxLoginScreen.js:29
 #: packages/app-mobile/components/screens/dropbox-login.js:58
@@ -885,117 +939,118 @@ msgstr ""
 "이 인증 토큰은 오직 서드파티 애플리케이션에서 Joplin에 접근할 때만 필요합니"
 "다."
 
-#: packages/app-desktop/gui/MenuBar.js:114
+#: packages/app-desktop/gui/MenuBar.js:166
 #, javascript-format
 msgid "Importing from \"%s\" as \"%s\" format. Please wait..."
 msgstr "\"%s\"에서 \"%s\" 포맷으로 가져오는 중입니다. 잠시만 기다려주세요..."
 
-#: packages/app-desktop/gui/MenuBar.js:223 packages/app-desktop/gui/Root.js:102
+#: packages/app-desktop/gui/MenuBar.js:287 packages/app-desktop/gui/Root.js:102
 msgid "Synchronisation Status"
 msgstr "동기화 상태"
 
-#: packages/app-desktop/gui/MenuBar.js:242
+#: packages/app-desktop/gui/MenuBar.js:306
 msgid "Create note from template"
 msgstr "템플릿에서 노트 생성"
 
-#: packages/app-desktop/gui/MenuBar.js:247
+#: packages/app-desktop/gui/MenuBar.js:311
 msgid "Create to-do from template"
 msgstr "템플릿에서 할 일 생성"
 
-#: packages/app-desktop/gui/MenuBar.js:258
+#: packages/app-desktop/gui/MenuBar.js:322
 msgid "Open template directory"
 msgstr "템플릿 디렉터리 열기"
 
-#: packages/app-desktop/gui/MenuBar.js:263
+#: packages/app-desktop/gui/MenuBar.js:327
 msgid "Refresh templates"
 msgstr "템플릿 새로고침"
 
-#: packages/app-desktop/gui/MenuBar.js:289
+#: packages/app-desktop/gui/MenuBar.js:353
 msgid "Note attachments..."
 msgstr "노트 첨부..."
 
-#: packages/app-desktop/gui/MenuBar.js:320
-#: packages/app-desktop/gui/MenuBar.js:392
-#: packages/app-desktop/gui/MenuBar.js:671
+#: packages/app-desktop/gui/MenuBar.js:384
+#: packages/app-desktop/gui/MenuBar.js:456
+#: packages/app-desktop/gui/MenuBar.js:746
 msgid "&File"
 msgstr "파일(&F)"
 
-#: packages/app-desktop/gui/MenuBar.js:326
-#: packages/app-desktop/gui/MenuBar.js:593
+#: packages/app-desktop/gui/MenuBar.js:390
+#: packages/app-desktop/gui/MenuBar.js:668
 msgid "About Joplin"
 msgstr "Joplin에 대해서"
 
-#: packages/app-desktop/gui/MenuBar.js:333
+#: packages/app-desktop/gui/MenuBar.js:397
 msgid "Preferences..."
 msgstr "설정..."
 
-#: packages/app-desktop/gui/MenuBar.js:343
-#: packages/app-desktop/gui/MenuBar.js:571
+#: packages/app-desktop/gui/MenuBar.js:407
+#: packages/app-desktop/gui/MenuBar.js:646
 msgid "Check for updates..."
 msgstr "업데이트 확인..."
 
-#: packages/app-desktop/gui/MenuBar.js:358
-#: packages/app-desktop/gui/MenuBar.js:407
+#: packages/app-desktop/gui/MenuBar.js:422
+#: packages/app-desktop/gui/MenuBar.js:471
 msgid "Templates"
 msgstr "템플릿"
 
-#: packages/app-desktop/gui/MenuBar.js:369
+#: packages/app-desktop/gui/MenuBar.js:433
+#: packages/app-desktop/gui/MenuBar.js:479
 msgid "Export all"
 msgstr "모두 내보내기"
 
-#: packages/app-desktop/gui/MenuBar.js:381
+#: packages/app-desktop/gui/MenuBar.js:445
 #, javascript-format
 msgid "Hide %s"
 msgstr "%s 숨기기"
 
-#: packages/app-desktop/gui/MenuBar.js:438
-#: packages/app-desktop/gui/MenuBar.js:675
+#: packages/app-desktop/gui/MenuBar.js:502
+#: packages/app-desktop/gui/MenuBar.js:750
 msgid "&Edit"
 msgstr "편집(&E)"
 
-#: packages/app-desktop/gui/MenuBar.js:458
+#: packages/app-desktop/gui/MenuBar.js:533
 msgid "&View"
 msgstr "보기(&V)"
 
-#: packages/app-desktop/gui/MenuBar.js:466
+#: packages/app-desktop/gui/MenuBar.js:541
 msgid "Layout button sequence"
 msgstr "레이아웃 버튼 순서"
 
-#: packages/app-desktop/gui/MenuBar.js:511
-#: packages/app-desktop/gui/MenuBar.js:517
+#: packages/app-desktop/gui/MenuBar.js:586
+#: packages/app-desktop/gui/MenuBar.js:592
 msgid "Zoom In"
 msgstr "확대"
 
-#: packages/app-desktop/gui/MenuBar.js:524
+#: packages/app-desktop/gui/MenuBar.js:599
 msgid "Zoom Out"
 msgstr "축소"
 
-#: packages/app-desktop/gui/MenuBar.js:533
+#: packages/app-desktop/gui/MenuBar.js:608
 msgid "&Go"
 msgstr "이동(&G)"
 
-#: packages/app-desktop/gui/MenuBar.js:545
+#: packages/app-desktop/gui/MenuBar.js:620
 msgid "&Note"
 msgstr "노트(&N)"
 
-#: packages/app-desktop/gui/MenuBar.js:554
+#: packages/app-desktop/gui/MenuBar.js:629
 msgid "&Tools"
 msgstr "도구(&T)"
 
-#: packages/app-desktop/gui/MenuBar.js:558
+#: packages/app-desktop/gui/MenuBar.js:633
 msgid "&Help"
 msgstr "도움말(&H)"
 
-#: packages/app-desktop/gui/MenuBar.js:565
+#: packages/app-desktop/gui/MenuBar.js:640
 msgid "Joplin Forum"
 msgstr "Joplin 포럼"
 
-#: packages/app-desktop/gui/MenuBar.js:568
+#: packages/app-desktop/gui/MenuBar.js:643
 #: packages/app-mobile/components/screens/config.js:495
 msgid "Make a donation"
 msgstr "기부하기"
 
-#: packages/app-desktop/gui/MenuBar.js:580
+#: packages/app-desktop/gui/MenuBar.js:655
 msgid "Toggle development tools"
 msgstr "개발자 도구 띄우기"
 
@@ -1015,7 +1070,7 @@ msgstr "설치하기:"
 #, javascript-format
 msgid ""
 "New notebook \"%s\" will be created and file \"%s\" will be imported into it"
-msgstr "새 \"%s\" 노트북이 생성되었으며 \"%s\" 파일을 가져왔습니다"
+msgstr "새 \"%s\" 노트북이 생성되고 \"%s\" 파일을 여기에 가져옵니다"
 
 #: packages/app-desktop/gui/ImportScreen.min.js:68
 #: packages/app-cli/app/command-import.js:47
@@ -1059,38 +1114,38 @@ msgstr "태그됨: %d."
 msgid "The notes have been imported: %s"
 msgstr "노트를 가져왔습니다: %s"
 
-#: packages/app-desktop/gui/utils/NoteListUtils.js:42
+#: packages/app-desktop/gui/utils/NoteListUtils.js:44
 msgid "Duplicate"
 msgstr "복제"
 
-#: packages/app-desktop/gui/utils/NoteListUtils.js:47
+#: packages/app-desktop/gui/utils/NoteListUtils.js:49
 #, javascript-format
 msgid "%s - Copy"
 msgstr "%s - 복사"
 
-#: packages/app-desktop/gui/utils/NoteListUtils.js:58
+#: packages/app-desktop/gui/utils/NoteListUtils.js:60
 msgid "Switch between note and to-do type"
 msgstr "'노트' 또는 '할 일' 형식으로 전환합니다"
 
-#: packages/app-desktop/gui/utils/NoteListUtils.js:86
+#: packages/app-desktop/gui/utils/NoteListUtils.js:88
 msgid "Switch to note type"
-msgstr "'노트' 형식으로 전환합니다"
+msgstr "'노트'  형식으로 전환합니다"
 
-#: packages/app-desktop/gui/utils/NoteListUtils.js:92
+#: packages/app-desktop/gui/utils/NoteListUtils.js:94
 msgid "Switch to to-do type"
 msgstr "'할 일' 형식으로 전환합니다"
 
-#: packages/app-desktop/gui/utils/NoteListUtils.js:99
+#: packages/app-desktop/gui/utils/NoteListUtils.js:101
 #: packages/app-mobile/components/screens/Note.js:817
 msgid "Copy Markdown link"
 msgstr "마크다운 링크 복사"
 
-#: packages/app-desktop/gui/utils/NoteListUtils.js:158
+#: packages/app-desktop/gui/utils/NoteListUtils.js:163
 #, javascript-format
 msgid "Delete note \"%s\"?"
 msgstr "\"%s\" 노트를 삭제할까요?"
 
-#: packages/app-desktop/gui/utils/NoteListUtils.js:161
+#: packages/app-desktop/gui/utils/NoteListUtils.js:166
 #, javascript-format
 msgid "Delete these %d notes?"
 msgstr "%d 개의 노트들을 삭제할까요?"
@@ -1291,89 +1346,123 @@ msgstr "Dropbox 로그인"
 msgid "Note attachments"
 msgstr "노트 첨부"
 
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:106
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:105
 msgid "This will open a new screen. Save your current changes?"
 msgstr "이는 새로운 스크린을 열 것입니다. 현재 변경 사안을 저장하시겠습니까?"
 
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:169
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:171
 #: packages/app-mobile/components/screens/config.js:307
 msgid "Check synchronisation configuration"
 msgstr "동기화 설정 확인"
 
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:174
-msgid "Unknown"
-msgstr "알 수 없음"
-
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:177
-msgid "Checking..."
-msgstr "검사 중..."
-
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:183
-#: packages/lib/models/Resource.js:320
-msgid "Error"
-msgstr "오류"
-
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:188
-msgid ""
-"The Joplin Nextcloud App is either not installed or misconfigured. Please "
-"see the full error message below:"
-msgstr ""
-"Joplin Nextcloud 애플리케이션이 설치되지 않았거나 잘못 설정되었습니다. 아래"
-"의 상세 오류 메시지를 확인해주세요:"
-
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:192
-msgid "Show Log"
-msgstr "로그 보기"
-
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:198
-msgid "Joplin Nextcloud App status:"
-msgstr "Joplin Nextcloud 애플리케이션 상태:"
-
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:204
-msgid "Check Status"
-msgstr "상태 검사"
-
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:208
-msgid "Help"
-msgstr "도움말"
-
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:219
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:217
 msgid "Show Advanced Settings"
 msgstr "고급 옵션"
 
 #: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:406
-msgid "Browse..."
-msgstr "훑어보기..."
+msgid "Path:"
+msgstr "경로:"
 
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:456
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:411
+msgid "Browse..."
+msgstr "찾아보기..."
+
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:413
+msgid "Arguments:"
+msgstr "전달할 인수:"
+
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:461
 msgid "The application must be restarted for these changes to take effect."
 msgstr "변경 사항이 적용되려면 애플리케이션이 반드시 재시작되어야 합니다."
 
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:468
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:473
 #: packages/app-desktop/gui/NoteList/NoteList.js:163
 msgid "Do it now"
 msgstr "지금하기"
 
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:468
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:473
 msgid "Later"
 msgstr "나중에"
 
-#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:521
+#: packages/app-desktop/gui/ConfigScreen/ConfigScreen.js:526
 msgid "Restart now"
-msgstr "지금 재시작하"
+msgstr "지금 재시작"
+
+#: packages/app-desktop/gui/ConfigScreen/Sidebar.js:89
+#: packages/lib/models/Setting.js:1524
+msgid "Plugins"
+msgstr "플러그인"
 
 #: packages/app-desktop/gui/ConfigScreen/ButtonBar.js:27
 msgid "Apply"
 msgstr "적용"
 
-#: packages/app-desktop/gui/ConfigScreen/controls/PluginsStates.js:137
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginsStates.js:113
 #, javascript-format
 msgid "Delete plugin \"%s\"?"
 msgstr "\"%s\" 플러그인을 삭제할까요?"
 
-#: packages/app-desktop/gui/ConfigScreen/controls/PluginsStates.js:181
-msgid "Install plugin"
-msgstr "플러그인 설치하기"
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginsStates.js:155
+msgid "Browse all plugins"
+msgstr "모든 플러그인 보기"
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginsStates.js:159
+msgid "Install from file"
+msgstr "플러그인 파일로 설치"
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginsStates.js:193
+msgid "You do not have any installed plugin."
+msgstr "설치된 플러그인이 없습니다."
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginsStates.js:208
+msgid "Plugin tools"
+msgstr "플러그인 도구"
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginsStates.js:209
+msgid "Manage your plugins"
+msgstr "플러그인 관리"
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/SearchPlugins.js:68
+msgid "No results"
+msgstr "결과 없음"
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/SearchPlugins.js:80
+msgid "Search for plugins..."
+msgstr "플러그인 찾기..."
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginBox.js:127
+msgid "Install"
+msgstr "설치"
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginBox.js:129
+msgid "Installing..."
+msgstr "설치 중..."
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginBox.js:131
+msgid "Installed"
+msgstr "설치됨"
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginBox.js:137
+msgid "Update"
+msgstr "업데이트"
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginBox.js:139
+msgid "Updating..."
+msgstr "업데이트 중..."
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginBox.js:151
+msgid "Please upgrade Joplin to use this plugin"
+msgstr "이 플러그인을 사용하기 위해서는 Joplin을 업그레이드해야 합니다"
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/PluginBox.js:165
+#, javascript-format
+msgid "(%s)"
+msgstr "(%s)"
+
+#: packages/app-desktop/gui/ConfigScreen/controls/plugins/useOnInstallHandler.js:49
+#, javascript-format
+msgid "Could not install plugin: %s"
+msgstr "플러그인을 설치할 수 없습니다: %s"
 
 #: packages/app-desktop/gui/PromptDialog.min.js:249
 msgid "Clear"
@@ -1396,14 +1485,14 @@ msgid "Lines"
 msgstr "줄"
 
 #: packages/app-desktop/gui/NoteContentPropertiesDialog.js:98
-#: packages/lib/models/Setting.js:390 packages/lib/models/Setting.js:391
-#: packages/lib/models/Setting.js:392
+#: packages/lib/models/Setting.js:484 packages/lib/models/Setting.js:485
+#: packages/lib/models/Setting.js:486
 msgid "Editor"
 msgstr "편집"
 
 #: packages/app-desktop/gui/NoteContentPropertiesDialog.js:99
-#: packages/lib/models/Setting.js:390 packages/lib/models/Setting.js:391
-#: packages/lib/models/Setting.js:393
+#: packages/lib/models/Setting.js:484 packages/lib/models/Setting.js:485
+#: packages/lib/models/Setting.js:487
 msgid "Viewer"
 msgstr "뷰어"
 
@@ -1417,7 +1506,7 @@ msgid "Statistics"
 msgstr "통계"
 
 #: packages/app-desktop/gui/NoteContentPropertiesDialog.js:113
-#: packages/app-desktop/gui/ShareNoteDialog.js:175
+#: packages/app-desktop/gui/ShareNoteDialog.js:186
 #: packages/app-desktop/services/plugins/UserWebviewDialogButtonBar.js:24
 msgid "Close"
 msgstr "닫기"
@@ -1431,7 +1520,7 @@ msgid "View"
 msgstr "보기"
 
 #: packages/app-desktop/gui/NoteList/NoteList.js:162
-#: packages/lib/models/Setting.js:405
+#: packages/lib/models/Setting.js:500
 msgid "Sort notes by"
 msgstr "노트를 다음 기준으로 정렬"
 
@@ -1441,8 +1530,8 @@ msgid ""
 "To manually sort the notes, the sort order must be changed to \"%s\" in the "
 "menu \"%s\" > \"%s\""
 msgstr ""
-"노트들을 수동으로 정렬하려면 \"%s\"가 변경되어야만 합니다.(\"%s\" > \"%s\" 메"
-"뉴)"
+"노트들을 수동으로 정렬하려면 정렬 옵션이 \"%s\"로 변경되어야만 합니다.(\"%s"
+"\" > \"%s\" 메뉴)"
 
 #: packages/app-desktop/gui/NoteList/NoteList.js:414
 msgid "No notes in here. Create one by clicking on \"New note\"."
@@ -1474,16 +1563,16 @@ msgid "Action"
 msgstr "동작"
 
 #: packages/app-desktop/gui/ResourceScreen.js:43 packages/lib/path-utils.js:83
-#: packages/lib/path-utils.js:118 packages/lib/models/BaseItem.js:737
+#: packages/lib/path-utils.js:118 packages/lib/models/BaseItem.js:708
 msgid "Untitled"
 msgstr "제목 없음"
 
-#: packages/app-desktop/gui/ResourceScreen.js:94
+#: packages/app-desktop/gui/ResourceScreen.js:95
 #, javascript-format
 msgid "Delete attachment \"%s\"?"
 msgstr "첨부된 \"%s\"를 삭제할까요?"
 
-#: packages/app-desktop/gui/ResourceScreen.js:140
+#: packages/app-desktop/gui/ResourceScreen.js:141
 msgid ""
 "This is an advanced tool to show the attachments that are linked to your "
 "notes. Please be careful when deleting one of them as they cannot be "
@@ -1492,43 +1581,43 @@ msgstr ""
 "노트에 링크된 첨부 파일을 보여주는 고급 도구입니다. 여기에서 보여지는 항목을 "
 "삭제할 경우, 나중에 복원할 수 없으므로 주의하시기 바랍니다."
 
-#: packages/app-desktop/gui/ResourceScreen.js:141
+#: packages/app-desktop/gui/ResourceScreen.js:142
 msgid "Please wait..."
 msgstr "잠시만 기다려주세요..."
 
-#: packages/app-desktop/gui/ResourceScreen.js:143
+#: packages/app-desktop/gui/ResourceScreen.js:144
 msgid "No resources!"
 msgstr "없는 리소스입니다!"
 
-#: packages/app-desktop/gui/ResourceScreen.js:145
+#: packages/app-desktop/gui/ResourceScreen.js:146
 #, javascript-format
 msgid "Warning: not all resources shown for performance reasons (limit: %s)."
 msgstr "경고: 성능상의 문제로 모든 리소스를 표시하지 않습니다 (제한: %s)."
 
-#: packages/app-desktop/gui/ShareNoteDialog.js:158
+#: packages/app-desktop/gui/ShareNoteDialog.js:159
 msgid "Synchronising..."
 msgstr "동기화 중..."
 
-#: packages/app-desktop/gui/ShareNoteDialog.js:160
+#: packages/app-desktop/gui/ShareNoteDialog.js:161
 msgid "Generating link..."
 msgid_plural "Generating links..."
 msgstr[0] "링크를 만드는 중..."
 
-#: packages/app-desktop/gui/ShareNoteDialog.js:162
+#: packages/app-desktop/gui/ShareNoteDialog.js:163
 msgid "Link has been copied to clipboard!"
 msgid_plural "Links have been copied to clipboard!"
 msgstr[0] "링크가 클립보드로 복사되었습니다!"
 
-#: packages/app-desktop/gui/ShareNoteDialog.js:165
+#: packages/app-desktop/gui/ShareNoteDialog.js:170
 msgid ""
 "Note: When a note is shared, it will no longer be encrypted on the server."
 msgstr "참고: 공유된 노트는 서버에서 암호화될 수 없습니다."
 
-#: packages/app-desktop/gui/ShareNoteDialog.js:170
+#: packages/app-desktop/gui/ShareNoteDialog.js:180
 msgid "Share Notes"
 msgstr "공유된 노트들"
 
-#: packages/app-desktop/gui/ShareNoteDialog.js:172
+#: packages/app-desktop/gui/ShareNoteDialog.js:182
 msgid "Copy Shareable Link"
 msgid_plural "Copy Shareable Links"
 msgstr[0] "공유 링크 복사"
@@ -1563,20 +1652,20 @@ msgstr "편집기에서 노트를 열 수 없는 오류가 발생하였습니다
 msgid "Open profile directory"
 msgstr "프로필 디렉터리 열기"
 
-#: packages/app-desktop/app.js:336
+#: packages/app-desktop/app.js:365
 #, javascript-format
 msgid "Open %s"
 msgstr "%s 열기"
 
 #: packages/app-desktop/services/plugins/UserWebviewDialogButtonBar.js:22
 #: packages/app-mobile/components/screens/Note.js:504
-#: packages/lib/shim-init-node.js:137 packages/lib/versionInfo.js:25
+#: packages/lib/shim-init-node.js:148 packages/lib/versionInfo.js:25
 msgid "Yes"
 msgstr "예"
 
 #: packages/app-desktop/services/plugins/UserWebviewDialogButtonBar.js:23
 #: packages/app-mobile/components/screens/Note.js:505
-#: packages/lib/shim-init-node.js:137 packages/lib/versionInfo.js:25
+#: packages/lib/shim-init-node.js:148 packages/lib/versionInfo.js:25
 msgid "No"
 msgstr "아니오"
 
@@ -1833,6 +1922,10 @@ msgstr "- 위치: 지리적 위치 정보를 노트에 첨부하기 위해 필�
 msgid "Joplin website"
 msgstr "Joplin 웹사이트"
 
+#: packages/app-mobile/components/screens/config.js:523
+msgid "Privacy Policy"
+msgstr "개인 정보 보호 정책"
+
 #: packages/app-mobile/components/screens/Note.js:98
 msgid "This note has been modified:"
 msgstr "노트가 변경되었습니다:"
@@ -1852,7 +1945,7 @@ msgstr "식별자 %s에 해당하는 항목이 없습니다"
 
 #: packages/app-mobile/components/screens/Note.js:168
 msgid "This attachment is not downloaded or not decrypted yet."
-msgstr "이 첨부는 아직 다운로드 또는 복호화 되지 않았습니다."
+msgstr "이 첨부는 아직 다운로드 또는 복호화되지 않았습니다."
 
 #: packages/app-mobile/components/screens/Note.js:173
 #, javascript-format
@@ -1886,7 +1979,7 @@ msgid "Delete note?"
 msgstr "이 노트를 삭제할까요?"
 
 #: packages/app-mobile/components/screens/Note.js:503
-#: packages/lib/shim-init-node.js:136
+#: packages/lib/shim-init-node.js:147
 #, javascript-format
 msgid ""
 "You are about to attach a large image (%dx%d pixels). Would you like to "
@@ -1953,10 +2046,19 @@ msgstr "제목 추가"
 msgid "Search"
 msgstr "검색"
 
+#: packages/server/dist/middleware/notificationHandler.js:26
+#, javascript-format
+msgid ""
+"The default admin password is insecure and has not been changed! [Change it "
+"now](%s)"
+msgstr ""
+"기본 관리자 암호는가 변경되지 않았으며, 이는 보안상 안전하지 않습니다! [지금 "
+"바꾸기](%s)"
+
 #: packages/lib/onedrive-api-node-utils.js:46
 #, javascript-format
 msgid "All potential ports are in use - please report the issue at %s"
-msgstr "모든 가능한 포트들이 사용중에 있습니다 - %s 에 대한 문제를 알려주세요"
+msgstr "모든 포트들이 사용 중입니다 - %s에 문제를 공유해주시면 감사하겠습니다"
 
 #: packages/lib/onedrive-api-node-utils.js:86
 msgid ""
@@ -1988,46 +2090,50 @@ msgstr "AWS S3"
 msgid "Dropbox"
 msgstr "Dropbox"
 
-#: packages/lib/shim-init-node.js:201
+#: packages/lib/SyncTargetJoplinServer.js:30
+msgid "Joplin Server"
+msgstr "Joplin 서버"
+
+#: packages/lib/shim-init-node.js:212
 #, javascript-format
 msgid "Cannot access %s"
 msgstr "%s에 접근할 수 없음"
 
-#: packages/lib/models/Folder.js:27 packages/lib/models/Note.js:26
+#: packages/lib/models/Folder.js:34 packages/lib/models/Note.js:35
 msgid "title"
 msgstr "제목"
 
-#: packages/lib/models/Folder.js:28 packages/lib/models/Note.js:27
+#: packages/lib/models/Folder.js:35 packages/lib/models/Note.js:36
 msgid "updated date"
 msgstr "수정 날짜"
 
-#: packages/lib/models/Folder.js:97
+#: packages/lib/models/Folder.js:102
 msgid "Conflicts"
 msgstr "충돌"
 
-#: packages/lib/models/Folder.js:406
+#: packages/lib/models/Folder.js:393
 msgid "Cannot move notebook to this location"
 msgstr "노트북을 이 위치로 옮길 수 없습니다"
 
-#: packages/lib/models/Folder.js:458
+#: packages/lib/models/Folder.js:445
 #, javascript-format
 msgid "Notebooks cannot be named \"%s\", which is a reserved title."
 msgstr "노트북 제목을 \"%s\" 으로 정할 수 없습니다. 이미 예약 중입니다."
 
-#: packages/lib/models/Setting.js:66
+#: packages/lib/models/Setting.js:92
 msgid "yes"
 msgstr "예"
 
-#: packages/lib/models/Setting.js:66 packages/lib/models/Setting.js:67
+#: packages/lib/models/Setting.js:92 packages/lib/models/Setting.js:93
 #, javascript-format
 msgid "(wysiwyg: %s)"
 msgstr "(위지윅: %s)"
 
-#: packages/lib/models/Setting.js:67
+#: packages/lib/models/Setting.js:93
 msgid "no"
 msgstr "아니오"
 
-#: packages/lib/models/Setting.js:69
+#: packages/lib/models/Setting.js:95
 #, javascript-format
 msgid ""
 "Attention: If you change this location, make sure you copy all your content "
@@ -2037,99 +2143,115 @@ msgstr ""
 "주의: 이 위치를 변경하시려면, 동기화 전에 모든 내용들을 복사하였는지 확인해주"
 "세요. 변경 중에 모든 파일이 삭제 됩니다! 자세한 정보는 FAQ를 참조해주세요: %s"
 
-#: packages/lib/models/Setting.js:75
+#: packages/lib/models/Setting.js:101
 msgid "Light"
 msgstr "Light"
 
-#: packages/lib/models/Setting.js:76
+#: packages/lib/models/Setting.js:102
 msgid "Dark"
 msgstr "Dark"
 
-#: packages/lib/models/Setting.js:77
+#: packages/lib/models/Setting.js:103
 msgid "Dracula"
 msgstr "Dracula"
 
-#: packages/lib/models/Setting.js:78
+#: packages/lib/models/Setting.js:104
 msgid "Solarised Light"
 msgstr "Solarized Light"
 
-#: packages/lib/models/Setting.js:79
+#: packages/lib/models/Setting.js:105
 msgid "Solarised Dark"
 msgstr "Solarized Dark"
 
-#: packages/lib/models/Setting.js:80
+#: packages/lib/models/Setting.js:106
 msgid "Nord"
 msgstr "Nord"
 
-#: packages/lib/models/Setting.js:81
+#: packages/lib/models/Setting.js:107
 msgid "Aritim Dark"
 msgstr "Aritim Dark"
 
-#: packages/lib/models/Setting.js:82
+#: packages/lib/models/Setting.js:108
 msgid "OLED Dark"
 msgstr "OLED Dark"
 
-#: packages/lib/models/Setting.js:103
+#: packages/lib/models/Setting.js:130
 msgid "Synchronisation target"
 msgstr "동기화 대상"
 
-#: packages/lib/models/Setting.js:105
+#: packages/lib/models/Setting.js:132
 msgid ""
-"The target to synchonise to. Each sync target may have additional parameters "
-"which are named as `sync.NUM.NAME` (all documented below)."
+"The target to synchronise to. Each sync target may have additional "
+"parameters which are named as `sync.NUM.NAME` (all documented below)."
 msgstr ""
 "동기화를 할 대상을 선택합니다. 각각의 동기화 대상은 `sync.NUM.NAME` 형식으로 "
 "된 추가적인 매개 변수를 포함할 수 있습니다. (아래에 문서화되어 있습니다)."
 
-#: packages/lib/models/Setting.js:132
+#: packages/lib/models/Setting.js:160
 msgid "Directory to synchronise with (absolute path)"
 msgstr "동기화를 할 폴더 (절대 경로)"
 
-#: packages/lib/models/Setting.js:143
+#: packages/lib/models/Setting.js:172
 msgid "Nextcloud WebDAV URL"
 msgstr "Nextcloud WebDAV URL"
 
-#: packages/lib/models/Setting.js:154
+#: packages/lib/models/Setting.js:184
 msgid "Nextcloud username"
 msgstr "Nextcloud 사용자 이름"
 
-#: packages/lib/models/Setting.js:164
+#: packages/lib/models/Setting.js:195
 msgid "Nextcloud password"
 msgstr "Nextcloud 암호"
 
-#: packages/lib/models/Setting.js:175
+#: packages/lib/models/Setting.js:206
 msgid "WebDAV URL"
 msgstr "WebDAV URL"
 
-#: packages/lib/models/Setting.js:186
+#: packages/lib/models/Setting.js:218
 msgid "WebDAV username"
 msgstr "WebDAV 사용자 이름"
 
-#: packages/lib/models/Setting.js:196
+#: packages/lib/models/Setting.js:229
 msgid "WebDAV password"
 msgstr "WebDAV 암호"
 
-#: packages/lib/models/Setting.js:215
+#: packages/lib/models/Setting.js:248
 msgid "AWS S3 bucket"
 msgstr "AWS S3 버킷"
 
-#: packages/lib/models/Setting.js:226
+#: packages/lib/models/Setting.js:260
 msgid "AWS S3 URL"
 msgstr "AWS S3 URL"
 
-#: packages/lib/models/Setting.js:237
+#: packages/lib/models/Setting.js:271
 msgid "AWS key"
 msgstr "AWS 키"
 
-#: packages/lib/models/Setting.js:247
+#: packages/lib/models/Setting.js:282
 msgid "AWS secret"
 msgstr "AWS 보안 암호"
 
-#: packages/lib/models/Setting.js:259
+#: packages/lib/models/Setting.js:293
+msgid "Joplin Server URL"
+msgstr "Joplin 서버 URL"
+
+#: packages/lib/models/Setting.js:308
+msgid "Joplin Server Directory"
+msgstr "Joplin 서버 디렉터리"
+
+#: packages/lib/models/Setting.js:319
+msgid "Joplin Server username"
+msgstr "Joplin 서버 사용자 이름"
+
+#: packages/lib/models/Setting.js:330
+msgid "Joplin Server password"
+msgstr "Joplin 서버 암호"
+
+#: packages/lib/models/Setting.js:342
 msgid "Attachment download behaviour"
 msgstr "첨부 파일 다운로드 시 행동"
 
-#: packages/lib/models/Setting.js:260
+#: packages/lib/models/Setting.js:343
 msgid ""
 "In \"Manual\" mode, attachments are downloaded only when you click on them. "
 "In \"Auto\", they are downloaded when you open the note. In \"Always\", all "
@@ -2139,262 +2261,279 @@ msgstr ""
 "서는 노트를 열 때만 다운로드됩니다. \\“항상\\” 모드에서는 노트를 열지 않아도 "
 "첨부 파일이 다운로드됩니다."
 
-#: packages/lib/models/Setting.js:263
+#: packages/lib/models/Setting.js:346
 msgid "Always"
 msgstr "항상"
 
-#: packages/lib/models/Setting.js:264
+#: packages/lib/models/Setting.js:347
 msgid "Manual"
 msgstr "수동"
 
-#: packages/lib/models/Setting.js:265
+#: packages/lib/models/Setting.js:348
 msgid "Auto"
 msgstr "자동"
 
-#: packages/lib/models/Setting.js:280
+#: packages/lib/models/Setting.js:366
 msgid "Max concurrent connections"
 msgstr "최대 동시 연결수"
 
-#: packages/lib/models/Setting.js:292
+#: packages/lib/models/Setting.js:379
 msgid "Language"
 msgstr "언어"
 
-#: packages/lib/models/Setting.js:302
+#: packages/lib/models/Setting.js:390
 msgid "Date format"
 msgstr "날짜 형식"
 
-#: packages/lib/models/Setting.js:321
+#: packages/lib/models/Setting.js:410
 msgid "Time format"
 msgstr "시간 형식"
 
-#: packages/lib/models/Setting.js:339
+#: packages/lib/models/Setting.js:429
 msgid "Theme"
 msgstr "테마"
 
-#: packages/lib/models/Setting.js:349
+#: packages/lib/models/Setting.js:440
 msgid "Automatically switch theme to match system theme"
 msgstr "시스템 테마에 적합한 테마로 자동으로 변경"
 
-#: packages/lib/models/Setting.js:360
+#: packages/lib/models/Setting.js:452
 msgid "Preferred light theme"
 msgstr "선호하는 밝은 테마"
 
-#: packages/lib/models/Setting.js:373
+#: packages/lib/models/Setting.js:466
 msgid "Preferred dark theme"
 msgstr "선호하는 어두운 테마"
 
-#: packages/lib/models/Setting.js:382
+#: packages/lib/models/Setting.js:476
 msgid "Show note counts"
 msgstr "노트 수 보이기"
 
-#: packages/lib/models/Setting.js:390 packages/lib/models/Setting.js:392
-#: packages/lib/models/Setting.js:393
+#: packages/lib/models/Setting.js:484 packages/lib/models/Setting.js:486
+#: packages/lib/models/Setting.js:487
 msgid "Split View"
 msgstr "뷰 나누기"
 
-#: packages/lib/models/Setting.js:390
+#: packages/lib/models/Setting.js:484
 #, javascript-format
 msgid "%s / %s / %s"
 msgstr "%s / %s / %s"
 
-#: packages/lib/models/Setting.js:391 packages/lib/models/Setting.js:392
-#: packages/lib/models/Setting.js:393
+#: packages/lib/models/Setting.js:485 packages/lib/models/Setting.js:486
+#: packages/lib/models/Setting.js:487
 #, javascript-format
 msgid "%s / %s"
 msgstr "%s / %s"
 
-#: packages/lib/models/Setting.js:396
+#: packages/lib/models/Setting.js:491
 msgid "Uncompleted to-dos on top"
 msgstr "완료되지 않은 '할 일'을 맨 위에"
 
-#: packages/lib/models/Setting.js:397
+#: packages/lib/models/Setting.js:492
 msgid "Show completed to-dos"
 msgstr "완료된 '할 일'을 표시"
 
-#: packages/lib/models/Setting.js:422
+#: packages/lib/models/Setting.js:518
 msgid "Auto-pair braces, parenthesis, quotations, etc."
 msgstr "괄호, 중괄호, 인용 부호 등의 자동 완성."
 
-#: packages/lib/models/Setting.js:424 packages/lib/models/Setting.js:442
+#: packages/lib/models/Setting.js:521 packages/lib/models/Setting.js:540
 msgid "Reverse sort order"
 msgstr "정렬 순서 반전"
 
-#: packages/lib/models/Setting.js:431
+#: packages/lib/models/Setting.js:528
 msgid "Sort notebooks by"
-msgstr "노트를 다음 기준으로 정렬"
+msgstr "노트북을 다음 기준으로 정렬"
 
-#: packages/lib/models/Setting.js:443
+#: packages/lib/models/Setting.js:541
 msgid "Save geo-location with notes"
 msgstr "노트에 지리적 위치 정보 포함시키기"
 
-#: packages/lib/models/Setting.js:465
+#: packages/lib/models/Setting.js:563
 msgid "When creating a new to-do:"
 msgstr "새로운 '할 일'을 만들때:"
 
-#: packages/lib/models/Setting.js:468 packages/lib/models/Setting.js:483
+#: packages/lib/models/Setting.js:566 packages/lib/models/Setting.js:582
 msgid "Focus title"
 msgstr "제목에 포커스"
 
-#: packages/lib/models/Setting.js:469 packages/lib/models/Setting.js:484
+#: packages/lib/models/Setting.js:567 packages/lib/models/Setting.js:583
 msgid "Focus body"
 msgstr "내용에 포커스"
 
-#: packages/lib/models/Setting.js:480
+#: packages/lib/models/Setting.js:579
 msgid "When creating a new note:"
 msgstr "새 노트를 만들 때:"
 
-#: packages/lib/models/Setting.js:494 packages/lib/models/Setting.js:1327
-msgid "Plugins"
-msgstr "플러그인"
-
-#: packages/lib/models/Setting.js:511
+#: packages/lib/models/Setting.js:612
 msgid "Enable soft breaks"
 msgstr "소프트 브레이크 활성화"
 
-#: packages/lib/models/Setting.js:512
+#: packages/lib/models/Setting.js:613
 msgid "Enable typographer support"
 msgstr "조판부호 지원 활성화"
 
-#: packages/lib/models/Setting.js:513
+#: packages/lib/models/Setting.js:614
+msgid "Enable Linkify"
+msgstr "링크 자동 감지 활성화"
+
+#: packages/lib/models/Setting.js:615
 msgid "Enable math expressions"
 msgstr "수식 표현 활성화"
 
-#: packages/lib/models/Setting.js:514
+#: packages/lib/models/Setting.js:616
 msgid "Enable Fountain syntax support"
 msgstr "Fountain 구문 지원 활성화"
 
-#: packages/lib/models/Setting.js:515
+#: packages/lib/models/Setting.js:617
 msgid "Enable Mermaid diagrams support"
 msgstr "Mermaid 다이어그램 지원 활성화"
 
-#: packages/lib/models/Setting.js:516
-msgid "Enable ==mark== syntax"
-msgstr "==Mark== 구문 활성화"
+#: packages/lib/models/Setting.js:618
+msgid "Enable audio player"
+msgstr "음성 재생 활성화"
 
-#: packages/lib/models/Setting.js:517
+#: packages/lib/models/Setting.js:619
+msgid "Enable video player"
+msgstr "비디오 재생 활성화"
+
+#: packages/lib/models/Setting.js:620
+msgid "Enable PDF viewer"
+msgstr "PDF 보기 활성화"
+
+#: packages/lib/models/Setting.js:621
+msgid "Enable ==mark== syntax"
+msgstr "==mark== 구문 활성화"
+
+#: packages/lib/models/Setting.js:622
 msgid "Enable footnotes"
 msgstr "각주 활성화"
 
-#: packages/lib/models/Setting.js:518
+#: packages/lib/models/Setting.js:623
 msgid "Enable table of contents extension"
-msgstr "표 내용 확장 활성화"
+msgstr "목차 확장 활성화"
 
-#: packages/lib/models/Setting.js:519
+#: packages/lib/models/Setting.js:624
 msgid "Enable ~sub~ syntax"
 msgstr "~sub~ 구문 활성화"
 
-#: packages/lib/models/Setting.js:520
+#: packages/lib/models/Setting.js:625
 msgid "Enable ^sup^ syntax"
 msgstr "^sup^ 구문 활성화"
 
-#: packages/lib/models/Setting.js:521
+#: packages/lib/models/Setting.js:626
 msgid "Enable deflist syntax"
 msgstr "정의 목록 구문 활성화"
 
-#: packages/lib/models/Setting.js:522
+#: packages/lib/models/Setting.js:627
 msgid "Enable abbreviation syntax"
 msgstr "약어 구문 활성화"
 
-#: packages/lib/models/Setting.js:523
+#: packages/lib/models/Setting.js:628
 msgid "Enable markdown emoji"
 msgstr "마크다운 이모지 활성화"
 
-#: packages/lib/models/Setting.js:524
+#: packages/lib/models/Setting.js:629
 msgid "Enable ++insert++ syntax"
 msgstr "++insert++ 확장 활성화"
 
-#: packages/lib/models/Setting.js:525
+#: packages/lib/models/Setting.js:630
 msgid "Enable multimarkdown table extension"
 msgstr "MultiMarkdown 테이블 확장 활성화"
 
-#: packages/lib/models/Setting.js:536
+#: packages/lib/models/Setting.js:641
 msgid "Show tray icon"
 msgstr "트레이 아이콘 표시"
 
-#: packages/lib/models/Setting.js:538
+#: packages/lib/models/Setting.js:643
 msgid "Note: Does not work in all desktop environments."
 msgstr "참고: 모든 데스크탑 환경에서 작동하는 것은 아닙니다."
 
-#: packages/lib/models/Setting.js:538
+#: packages/lib/models/Setting.js:643
 msgid ""
 "This will allow Joplin to run in the background. It is recommended to enable "
 "this setting so that your notes are constantly being synchronised, thus "
 "reducing the number of conflicts."
 msgstr ""
-"Joplin을 백그라운드에서 구동합니다. 노트가 정기적으로 동기화 되므로, 충돌 횟"
-"수가 줄어들게 되므로 이 옵션을 활성화 하시는 것을 추천드립니다."
+"Joplin을 백그라운드에서 구동합니다. 노트가 정기적으로 동기화되어 충돌 횟수를 "
+"줄일 수 있기 때문에 이 옵션을 활성화하는 것을 추천합니다."
 
-#: packages/lib/models/Setting.js:541
+#: packages/lib/models/Setting.js:647
 msgid "Start application minimised in the tray icon"
-msgstr "트레이 아이콘에 최소화 된 채로 Joplin 실행"
+msgstr "최소화된 채로 트레이 아이콘에서 Joplin 실행"
 
-#: packages/lib/models/Setting.js:556
+#: packages/lib/models/Setting.js:662
 msgid "Editor font size"
 msgstr "편집기 글꼴 크기"
 
-#: packages/lib/models/Setting.js:563
+#: packages/lib/models/Setting.js:669
 msgid "Editor font"
 msgstr "편집기 글꼴"
 
-#: packages/lib/models/Setting.js:587
+#: packages/lib/models/Setting.js:676 packages/lib/models/Setting.js:683
+#: packages/lib/models/Setting.js:791
+msgid "Default"
+msgstr "기본값"
+
+#: packages/lib/models/Setting.js:694
 msgid "Editor font family"
 msgstr "편집기 글꼴 모음"
 
-#: packages/lib/models/Setting.js:588
+#: packages/lib/models/Setting.js:695
 msgid ""
 "This should be a *monospace* font or some elements will render incorrectly. "
 "If the font is incorrect or empty, it will default to a generic monospace "
 "font."
 msgstr ""
 "반드시 *고정폭* 글꼴을 사용하여야 정상적으로 작동합니다. 만약 글꼴이 없거나 "
-"올바르지 않을 경우, 일반 c고정폭 글꼴을 기본값으로 사용합니다."
+"올바르지 않을 경우, 일반 고정폭 글꼴을 기본값으로 사용합니다."
 
-#: packages/lib/models/Setting.js:609
+#: packages/lib/models/Setting.js:717
 msgid "Custom stylesheet for rendered Markdown"
 msgstr "렌더된 마크다운에 적용할 사용자 정의 스타일시트"
 
-#: packages/lib/models/Setting.js:625
+#: packages/lib/models/Setting.js:733
 msgid "Custom stylesheet for Joplin-wide app styles"
 msgstr "Joplin 앱에 전역적으로 적용되는 사용자 정의 스타일시트"
 
-#: packages/lib/models/Setting.js:630
+#: packages/lib/models/Setting.js:738
 msgid "Automatically update the application"
 msgstr "자동으로 업데이트하기"
 
-#: packages/lib/models/Setting.js:631
+#: packages/lib/models/Setting.js:739
 msgid "Get pre-releases when checking for updates"
 msgstr "사전-출시 버전일 경우에도 업데이트"
 
-#: packages/lib/models/Setting.js:631
+#: packages/lib/models/Setting.js:739
 #, javascript-format
 msgid "See the pre-release page for more details: %s"
 msgstr "자세한 내용은 사전-출시 페이지를 참조해주세요: %s"
 
-#: packages/lib/models/Setting.js:639
+#: packages/lib/models/Setting.js:747
 msgid "Synchronisation interval"
 msgstr "동기화 간격"
 
-#: packages/lib/models/Setting.js:643 packages/lib/models/Setting.js:644
-#: packages/lib/models/Setting.js:645
+#: packages/lib/models/Setting.js:751 packages/lib/models/Setting.js:752
+#: packages/lib/models/Setting.js:753
 #, javascript-format
 msgid "%d minutes"
 msgstr "%d 분"
 
-#: packages/lib/models/Setting.js:646
+#: packages/lib/models/Setting.js:754
 #, javascript-format
 msgid "%d hour"
 msgstr "%d 시간"
 
-#: packages/lib/models/Setting.js:647 packages/lib/models/Setting.js:648
+#: packages/lib/models/Setting.js:755 packages/lib/models/Setting.js:756
 #, javascript-format
 msgid "%d hours"
 msgstr "%d 시간"
 
-#: packages/lib/models/Setting.js:655
+#: packages/lib/models/Setting.js:764
 msgid "Text editor command"
 msgstr "텍스트 편집기 명령어"
 
-#: packages/lib/models/Setting.js:655
+#: packages/lib/models/Setting.js:764
 msgid ""
 "The editor command (may include arguments) that will be used to open a note. "
 "If none is provided it will try to auto-detect the default editor."
@@ -2402,67 +2541,63 @@ msgstr ""
 "노트를 여는데 사용할 텍스트 편집기 명령어(인자를 포함할 수 있습니다)를 지정합"
 "니다. 주어진 명령어가 없을 시 기본 편집기를 자동으로 찾을 것입니다."
 
-#: packages/lib/models/Setting.js:656
+#: packages/lib/models/Setting.js:765
 msgid "Page size for PDF export"
 msgstr "PDF로 내보낼때 페이지 크기"
 
-#: packages/lib/models/Setting.js:658
+#: packages/lib/models/Setting.js:767
 msgid "A4"
 msgstr "A4"
 
-#: packages/lib/models/Setting.js:659
+#: packages/lib/models/Setting.js:768
 msgid "Letter"
 msgstr "Letter"
 
-#: packages/lib/models/Setting.js:660
+#: packages/lib/models/Setting.js:769
 msgid "A3"
 msgstr "A3"
 
-#: packages/lib/models/Setting.js:661
+#: packages/lib/models/Setting.js:770
 msgid "A5"
 msgstr "A5"
 
-#: packages/lib/models/Setting.js:662
+#: packages/lib/models/Setting.js:771
 msgid "Tabloid"
 msgstr "Tabloid"
 
-#: packages/lib/models/Setting.js:663
+#: packages/lib/models/Setting.js:772
 msgid "Legal"
 msgstr "Legal"
 
-#: packages/lib/models/Setting.js:666
+#: packages/lib/models/Setting.js:775
 msgid "Page orientation for PDF export"
 msgstr "PDF를 내보낼 때의 페이지 방향"
 
-#: packages/lib/models/Setting.js:668
+#: packages/lib/models/Setting.js:777
 msgid "Portrait"
 msgstr "세로 방향"
 
-#: packages/lib/models/Setting.js:669
+#: packages/lib/models/Setting.js:778
 msgid "Landscape"
 msgstr "가로 방향"
 
-#: packages/lib/models/Setting.js:679
+#: packages/lib/models/Setting.js:788
 msgid "Keyboard Mode"
 msgstr "키보드 모드"
 
-#: packages/lib/models/Setting.js:682
-msgid "Default"
-msgstr "기본값"
-
-#: packages/lib/models/Setting.js:683
+#: packages/lib/models/Setting.js:792
 msgid "Emacs"
 msgstr "Emacs"
 
-#: packages/lib/models/Setting.js:684
+#: packages/lib/models/Setting.js:793
 msgid "Vim"
 msgstr "Vim"
 
-#: packages/lib/models/Setting.js:707
+#: packages/lib/models/Setting.js:816
 msgid "Custom TLS certificates"
 msgstr "사용자 TLS 인증서"
 
-#: packages/lib/models/Setting.js:708
+#: packages/lib/models/Setting.js:817
 msgid ""
 "Comma-separated list of paths to directories to load the certificates from, "
 "or path to individual cert files. For example: /my/cert_dir, /other/custom."
@@ -2474,15 +2609,15 @@ msgstr ""
 "custom.pem. 참고사항: 만약 TLS 설정을 변경했다면 \"동기화 설정 확인\"을 진행"
 "하기 전에 반드시 변경 사항을 저장해야 합니다."
 
-#: packages/lib/models/Setting.js:720
+#: packages/lib/models/Setting.js:830
 msgid "Ignore TLS certificate errors"
 msgstr "TLS 인증서 오류 무시"
 
-#: packages/lib/models/Setting.js:728
+#: packages/lib/models/Setting.js:839
 msgid "Fail-safe"
 msgstr "안전 장치"
 
-#: packages/lib/models/Setting.js:729
+#: packages/lib/models/Setting.js:840
 msgid ""
 "Fail-safe: Do not wipe out local data when sync target is empty (often the "
 "result of a misconfiguration or bug)"
@@ -2490,7 +2625,7 @@ msgstr ""
 "안전 장치: 동기화할 대상이 비어 있다면, 로컬 데이터를 지우지 않습니다. (종종 "
 "잘못된 설정이나 버그로 인해 발생됩니다)"
 
-#: packages/lib/models/Setting.js:732
+#: packages/lib/models/Setting.js:844
 msgid ""
 "Specify the port that should be used by the API server. If not set, a "
 "default will be used."
@@ -2498,29 +2633,29 @@ msgstr ""
 "API 서버가 사용할 포트를 선택해주세요. 선택되지 않으면, 기본 포트를 선택합니"
 "다."
 
-#: packages/lib/models/Setting.js:737
+#: packages/lib/models/Setting.js:849
 msgid "Enable note history"
 msgstr "노트 변경 이력 활성화"
 
-#: packages/lib/models/Setting.js:747
+#: packages/lib/models/Setting.js:859
 msgid "days"
 msgstr "일"
 
-#: packages/lib/models/Setting.js:747
+#: packages/lib/models/Setting.js:859
 #, javascript-format
 msgid "%d days"
 msgstr "%d 일"
 
-#: packages/lib/models/Setting.js:749
+#: packages/lib/models/Setting.js:861
 msgid "Keep note history for"
 msgstr "다음과 같이 노트 변경 이력을 유지"
 
-#: packages/lib/models/Setting.js:774
+#: packages/lib/models/Setting.js:888
 msgid "Notebook list growth factor"
 msgstr "노트북 목록 증가 인수"
 
-#: packages/lib/models/Setting.js:775 packages/lib/models/Setting.js:787
-#: packages/lib/models/Setting.js:799
+#: packages/lib/models/Setting.js:889 packages/lib/models/Setting.js:902
+#: packages/lib/models/Setting.js:915
 msgid ""
 "The factor property sets how the item will grow or shrink to fit the "
 "available space in its container with respect to the other items. Thus an "
@@ -2532,58 +2667,58 @@ msgstr ""
 "많은 공간을 차지하게 될 것입니다. 변경은 애플리케이션을 재시작한 후에 적용됩"
 "니다."
 
-#: packages/lib/models/Setting.js:786
+#: packages/lib/models/Setting.js:901
 msgid "Note list growth factor"
 msgstr "노트 목록 증가 인수"
 
-#: packages/lib/models/Setting.js:798
+#: packages/lib/models/Setting.js:914
 msgid "Note area growth factor"
 msgstr "노트 영역 증가 인수"
 
-#: packages/lib/models/Setting.js:969
+#: packages/lib/models/Setting.js:1115
 #, javascript-format
 msgid "Invalid option value: \"%s\". Possible values are: %s."
 msgstr "올바르지 않은 옵션 값: \"%s\". 가능한 값은 다음과 같습니다: %s."
 
-#: packages/lib/models/Setting.js:1317
+#: packages/lib/models/Setting.js:1514
 msgid "General"
 msgstr "일반"
 
-#: packages/lib/models/Setting.js:1319
+#: packages/lib/models/Setting.js:1516
 msgid "Synchronisation"
 msgstr "동기화"
 
-#: packages/lib/models/Setting.js:1321
+#: packages/lib/models/Setting.js:1518
 msgid "Appearance"
 msgstr "보기"
 
-#: packages/lib/models/Setting.js:1323
+#: packages/lib/models/Setting.js:1520
 msgid "Note"
 msgstr "노트"
 
-#: packages/lib/models/Setting.js:1325
+#: packages/lib/models/Setting.js:1522
 #: packages/lib/services/interop/InteropService.js:49
 #: packages/lib/services/interop/InteropService.js:59
 msgid "Markdown"
 msgstr "마크다운"
 
-#: packages/lib/models/Setting.js:1329
+#: packages/lib/models/Setting.js:1526
 msgid "Application"
 msgstr "애플리케이션"
 
-#: packages/lib/models/Setting.js:1333
+#: packages/lib/models/Setting.js:1530
 msgid "Encryption"
 msgstr "암호화"
 
-#: packages/lib/models/Setting.js:1335
+#: packages/lib/models/Setting.js:1532
 msgid "Web Clipper"
 msgstr "웹 수집기"
 
-#: packages/lib/models/Setting.js:1337
+#: packages/lib/models/Setting.js:1534
 msgid "Keyboard Shortcuts"
 msgstr "키보드 바로가기"
 
-#: packages/lib/models/Setting.js:1344
+#: packages/lib/models/Setting.js:1541
 msgid ""
 "These plugins enhance the Markdown renderer with additional features. Please "
 "note that, while these features might be useful, they are not standard "
@@ -2600,29 +2735,33 @@ msgstr ""
 "수도 있습니다. 아래에 어떤 플러그인들이 위지윅 편집기와의 호환되는지 표시됩니"
 "다."
 
-#: packages/lib/models/Setting.js:1346
+#: packages/lib/models/Setting.js:1543
 #, javascript-format
 msgid "Notes and settings are stored in: %s"
 msgstr "노트와 설정값이 다음에 저장되었습니다: %s"
 
-#: packages/lib/models/Resource.js:317
+#: packages/lib/models/Resource.js:352
 msgid "Not downloaded"
 msgstr "다운로드 안됨"
 
-#: packages/lib/models/Resource.js:318
+#: packages/lib/models/Resource.js:354
 msgid "Downloading"
 msgstr "다운로드 중"
 
-#: packages/lib/models/Resource.js:319
+#: packages/lib/models/Resource.js:356
 msgid "Downloaded"
 msgstr "다운로드됨"
 
-#: packages/lib/models/Resource.js:371
+#: packages/lib/models/Resource.js:358
+msgid "Error"
+msgstr "오류"
+
+#: packages/lib/models/Resource.js:403
 #, javascript-format
 msgid "Attachment conflict: \"%s\""
 msgstr "첨부 충돌: \"%s\""
 
-#: packages/lib/models/Resource.js:372
+#: packages/lib/models/Resource.js:404
 #, javascript-format
 msgid ""
 "There was a [conflict](%s) on the attachment below.\n"
@@ -2633,69 +2772,65 @@ msgstr ""
 "\n"
 "%s"
 
-#: packages/lib/models/Tag.js:202
+#: packages/lib/models/Tag.js:223
 #, javascript-format
 msgid "The tag \"%s\" already exists. Please choose a different name."
 msgstr "태그 \"%s\"(이)가 이미 존재합니다. 다른 이름을 선택해 주세요."
 
-#: packages/lib/models/Note.js:28
+#: packages/lib/models/Note.js:37
 msgid "created date"
 msgstr "만든 날짜"
 
-#: packages/lib/models/Note.js:29
+#: packages/lib/models/Note.js:38
 msgid "custom order"
 msgstr "사용자 정의"
 
-#: packages/lib/models/Note.js:93
+#: packages/lib/models/Note.js:116
 msgid "This note does not have geolocation information."
 msgstr "이 노트는 위치 정보를 포함하고 있지 않습니다."
 
-#: packages/lib/models/Note.js:483
+#: packages/lib/models/Note.js:524
 #, javascript-format
 msgid "Cannot copy note to \"%s\" notebook"
 msgstr "노트를 \"%s\" 노트북으로 복사할 수 없습니다"
 
-#: packages/lib/models/Note.js:494
+#: packages/lib/models/Note.js:536
 #, javascript-format
 msgid "Cannot move note to \"%s\" notebook"
 msgstr "노트를 \"%s\" 노트북으로 옮길 수 없습니다"
 
-#: packages/lib/models/BaseItem.js:736
+#: packages/lib/models/BaseItem.js:707
 msgid "Encrypted"
 msgstr "암호화됨"
 
-#: packages/lib/models/BaseItem.js:796
+#: packages/lib/models/BaseItem.js:768
 msgid "Encrypted items cannot be modified"
 msgstr "암호화된 항목은 변경될 수 없습니다"
 
-#: packages/lib/SyncTargetOneDriveDev.js:15
-msgid "OneDrive Dev (For testing only)"
-msgstr "OneDrive Dev (실험용)"
-
-#: packages/lib/BaseApplication.js:147 packages/lib/BaseApplication.js:159
-#: packages/lib/BaseApplication.js:191
+#: packages/lib/BaseApplication.js:149 packages/lib/BaseApplication.js:161
+#: packages/lib/BaseApplication.js:193
 #, javascript-format
 msgid "Usage: %s"
 msgstr "사용량: %s"
 
-#: packages/lib/BaseApplication.js:226
+#: packages/lib/BaseApplication.js:228
 #, javascript-format
 msgid "Unknown flag: %s"
 msgstr "알 수 없는 플래그: %s"
 
-#: packages/lib/SyncTargetOneDrive.js:25
+#: packages/lib/SyncTargetOneDrive.js:32
 msgid "OneDrive"
 msgstr "OneDrive"
 
-#: packages/lib/components/shared/config-shared.js:46
+#: packages/lib/components/shared/config-shared.js:45
 msgid "Checking... Please wait."
 msgstr "확인 중입니다... 잠시만 기다리세요."
 
-#: packages/lib/components/shared/config-shared.js:48
+#: packages/lib/components/shared/config-shared.js:47
 msgid "Success! Synchronisation configuration appears to be correct."
 msgstr "성공! 동기화 설정이 올바릅니다."
 
-#: packages/lib/components/shared/config-shared.js:50
+#: packages/lib/components/shared/config-shared.js:49
 msgid ""
 "Error. Please check that URL, username, password, etc. are correct and that "
 "the sync target is accessible. The reported error was:"
@@ -2753,7 +2888,7 @@ msgstr "마스터 키를 업그레이드할 수 없습니다: %s"
 msgid "Decrypted items: %s / %s"
 msgstr "복호화된 항목: %s / %s"
 
-#: packages/lib/onedrive-api.js:367
+#: packages/lib/onedrive-api.js:392
 msgid ""
 "Cannot refresh token: authentication data is missing. Starting the "
 "synchronisation again may fix the problem."
@@ -2761,84 +2896,84 @@ msgstr ""
 "인증 데이터를 찾을 수 없어서 토큰을 새로고침 할 수 없습니다. 동기화를 다시 시"
 "도하면 문제가 해결될 수 있습니다."
 
-#: packages/lib/Synchronizer.js:108
+#: packages/lib/Synchronizer.js:119
 #, javascript-format
 msgid "Created local items: %d."
 msgstr "로컬 항목 생성됨: %d."
 
-#: packages/lib/Synchronizer.js:110
+#: packages/lib/Synchronizer.js:121
 #, javascript-format
 msgid "Updated local items: %d."
 msgstr "로컬 항목 업데이트됨: %d."
 
-#: packages/lib/Synchronizer.js:112
+#: packages/lib/Synchronizer.js:123
 #, javascript-format
 msgid "Created remote items: %d."
 msgstr "원격 항목 생성됨: %d."
 
-#: packages/lib/Synchronizer.js:114
+#: packages/lib/Synchronizer.js:125
 #, javascript-format
 msgid "Updated remote items: %d."
 msgstr "원격 항목 업데이트됨: %d."
 
-#: packages/lib/Synchronizer.js:116
+#: packages/lib/Synchronizer.js:127
 #, javascript-format
 msgid "Deleted local items: %d."
 msgstr "로컬 항목 삭제됨: %d."
 
-#: packages/lib/Synchronizer.js:118
+#: packages/lib/Synchronizer.js:129
 #, javascript-format
 msgid "Deleted remote items: %d."
 msgstr "원격 항목 삭제됨: %d."
 
-#: packages/lib/Synchronizer.js:120
+#: packages/lib/Synchronizer.js:131
 #, javascript-format
 msgid "Fetched items: %d/%d."
 msgstr "가져온 항목: %d/%d."
 
-#: packages/lib/Synchronizer.js:122
+#: packages/lib/Synchronizer.js:133
 msgid "Cancelling..."
 msgstr "취소하는 중..."
 
-#: packages/lib/Synchronizer.js:124
+#: packages/lib/Synchronizer.js:135
 #, javascript-format
 msgid "Completed: %s"
 msgstr "완료됨: %s"
 
-#: packages/lib/Synchronizer.js:126
+#: packages/lib/Synchronizer.js:137
 #, javascript-format
 msgid "Last error: %s"
 msgstr "최근 오류: %s"
 
-#: packages/lib/Synchronizer.js:233
+#: packages/lib/Synchronizer.js:244
 msgid "Idle"
 msgstr "대기"
 
-#: packages/lib/Synchronizer.js:235
+#: packages/lib/Synchronizer.js:246
 msgid "In progress"
 msgstr "진행 중"
 
-#: packages/lib/Synchronizer.js:818
+#: packages/lib/Synchronizer.js:844
 msgid ""
 "Unknown item type downloaded - please upgrade Joplin to the latest version"
 msgstr ""
 "알려지지 않은 타입을 다운로드 했습니다 - Joplin을 최신 버전으로 업데이트 해주"
 "세요"
 
-#: packages/lib/JoplinServerApi.js:71
+#: packages/lib/JoplinServerApi.js:63
 #, javascript-format
 msgid ""
-"Could not connect to the Joplin Nextcloud app. Please check the "
-"configuration in the Synchronisation config screen. Full error was:\n"
+"Could not connect to Joplin Server. Please check the Synchronisation options "
+"in the config screen. Full error was:\n"
 "\n"
 "%s"
 msgstr ""
-"Joplin Nextcloud 애플리케이션에 연결할 수 없습니다. 동기화 설정 화면에서 설정"
-"을 확인해주세요. 전체 오류 메시지:\n"
+"Joplin 서버에 연결할 수 없습니다. 동기화 설정 화면에서 설정을 확인해주세요. "
+"전체 오류 메시지:\n"
 "\n"
 "%s"
 
-#: packages/lib/SyncTargetNextcloud.js:26
+#: packages/lib/SyncTargetNextcloud.js:25
 msgid "Nextcloud"
 msgstr "Nextcloud"
 
@@ -2884,7 +3019,7 @@ msgstr "프로파일 버전: %s"
 msgid "Keychain Supported: %s"
 msgstr "키체인 지원: %s"
 
-#: packages/lib/services/RevisionService.js:221
+#: packages/lib/services/RevisionService.js:217
 msgid "Restored Notes"
 msgstr "복구된 노트들"
 
@@ -2916,11 +3051,11 @@ msgstr "Joplin 내보내기 폴더"
 
 #: packages/lib/services/interop/InteropService.js:51
 msgid "Evernote Export File (as Markdown)"
-msgstr "에버노트 내보내기 파일 (마크다운으로)"
+msgstr "Evernote 내보내기 파일 (마크다운으로)"
 
 #: packages/lib/services/interop/InteropService.js:52
 msgid "Evernote Export File (as HTML)"
-msgstr "에버노트 내보내기 파일 (HTML 으로)"
+msgstr "Evernote 내보내기 파일 (HTML로)"
 
 #: packages/lib/services/interop/InteropService.js:60
 msgid "HTML File"
@@ -2974,27 +3109,27 @@ msgstr "\"%s\"를 찾을 수 없습니다."
 msgid "Please specify import format for %s"
 msgstr "%s 항목에 사용할 가져오기 형식을 지정하세요"
 
-#: packages/lib/services/KeymapService.js:512
+#: packages/lib/services/KeymapService.js:273
 msgid "command"
 msgstr "명령"
 
-#: packages/lib/services/KeymapService.js:512
-#: packages/lib/services/KeymapService.js:517
+#: packages/lib/services/KeymapService.js:273
+#: packages/lib/services/KeymapService.js:278
 #, javascript-format
 msgid "\"%s\" is missing the required \"%s\" property."
 msgstr "\"%s\"에 \"%s\" 필수 속성이 없습니다."
 
-#: packages/lib/services/KeymapService.js:517
-#: packages/lib/services/KeymapService.js:524
+#: packages/lib/services/KeymapService.js:278
+#: packages/lib/services/KeymapService.js:285
 msgid "accelerator"
 msgstr "단축키"
 
-#: packages/lib/services/KeymapService.js:524
+#: packages/lib/services/KeymapService.js:285
 #, javascript-format
 msgid "Invalid %s: %s."
 msgstr "유효하지 않은 %s: %s."
 
-#: packages/lib/services/KeymapService.js:542
+#: packages/lib/services/KeymapService.js:303
 #, javascript-format
 msgid ""
 "Accelerator \"%s\" is used for \"%s\" and \"%s\" commands. This may lead to "
@@ -3003,16 +3138,16 @@ msgstr ""
 "단축키 \"%s\"는 \"%s\"와 \"%s\" 명령으로 사용 중입니다. 이러한 설정은 예기치 "
 "못한 동작을 할 수도 있습니다."
 
-#: packages/lib/services/KeymapService.js:567
+#: packages/lib/services/KeymapService.js:328
 #, javascript-format
 msgid "Accelerator \"%s\" is not valid."
 msgstr "단축키 \"%s\"는 유효하지 않습니다."
 
-#: packages/lib/services/report.js:121
+#: packages/lib/services/ReportService.js:123
 msgid "Items that cannot be synchronised"
 msgstr "동기화 할 수 없는 항목"
 
-#: packages/lib/services/report.js:123
+#: packages/lib/services/ReportService.js:124
 msgid ""
 "These items will remain on the device but will not be uploaded to the sync "
 "target. In order to find these items, either search for the title or the ID "
@@ -3022,21 +3157,21 @@ msgstr ""
 "런 항목을 찾길 원하신다면 제목 또는 ID로 검색하세요. (상단 괄호 안에 표시되"
 "어 있습니다)"
 
-#: packages/lib/services/report.js:130
+#: packages/lib/services/ReportService.js:129
 #, javascript-format
 msgid "%s (%s) could not be uploaded: %s"
 msgstr "%s (%s) 는 업로드 할 수 없습니다: %s"
 
-#: packages/lib/services/report.js:132
+#: packages/lib/services/ReportService.js:132
 #, javascript-format
 msgid "Item \"%s\" could not be downloaded: %s"
 msgstr "\"%s\"를 다운로드 할 수 없습니다: %s"
 
-#: packages/lib/services/report.js:142
+#: packages/lib/services/ReportService.js:139
 msgid "Items that cannot be decrypted"
 msgstr "항목을 복호화 할 수 없습니다"
 
-#: packages/lib/services/report.js:144
+#: packages/lib/services/ReportService.js:140
 msgid ""
 "Joplin failed to decrypt these items multiple times, possibly because they "
 "are corrupted or too large. These items will remain on the device but Joplin "
@@ -3046,76 +3181,83 @@ msgstr ""
 "상되었기 때문일 것입니다. 이 파일들은 기기에 남지만, Joplin은 더이상 이 항목"
 "들을 복호화 할 수 없습니다."
 
-#: packages/lib/services/report.js:151 packages/app-cli/app/cli-utils.js:140
+#: packages/lib/services/ReportService.js:145
+#: packages/app-cli/app/cli-utils.js:140
 #, javascript-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: packages/lib/services/report.js:182
+#: packages/lib/services/ReportService.js:171
 msgid "Attachments"
 msgstr "첨부"
 
-#: packages/lib/services/report.js:190
+#: packages/lib/services/ReportService.js:178
 msgid "Downloaded and decrypted"
 msgstr "다운로드 및 복호화됨"
 
-#: packages/lib/services/report.js:190 packages/lib/services/report.js:191
-#: packages/lib/services/report.js:194
+#: packages/lib/services/ReportService.js:178
+#: packages/lib/services/ReportService.js:179
+#: packages/lib/services/ReportService.js:180
+#: packages/lib/services/ReportService.js:184
 #, javascript-format
 msgid "%s: %d"
 msgstr "%s: %d"
 
-#: packages/lib/services/report.js:191
+#: packages/lib/services/ReportService.js:179
 msgid "Downloaded and encrypted"
 msgstr "다운로드 및 암호화됨"
 
-#: packages/lib/services/report.js:204
+#: packages/lib/services/ReportService.js:180
+msgid "Created locally"
+msgstr "로컬에서 생성됨"
+
+#: packages/lib/services/ReportService.js:191
 msgid "Attachments that could not be downloaded"
 msgstr "첨부 파일을 다운로드할 수 없습니다: %s"
 
-#: packages/lib/services/report.js:209
+#: packages/lib/services/ReportService.js:195
 #, javascript-format
 msgid "%s (%s): %s"
 msgstr "%s (%s): %s"
 
-#: packages/lib/services/report.js:222
+#: packages/lib/services/ReportService.js:206
 msgid "Sync status (synced items / total items)"
 msgstr "동기화 상태 (동기화 완료 항목 / 전체 항목)"
 
-#: packages/lib/services/report.js:226
+#: packages/lib/services/ReportService.js:210
 #, javascript-format
 msgid "%s: %d/%d"
 msgstr "%s: %d/%d"
 
-#: packages/lib/services/report.js:229
+#: packages/lib/services/ReportService.js:212
 #, javascript-format
 msgid "Total: %d/%d"
 msgstr "합계: %d/%d"
 
-#: packages/lib/services/report.js:231
+#: packages/lib/services/ReportService.js:214
 #, javascript-format
 msgid "Conflicted: %d"
 msgstr "충돌됨: %d"
 
-#: packages/lib/services/report.js:232
+#: packages/lib/services/ReportService.js:215
 #, javascript-format
 msgid "To delete: %d"
 msgstr "삭제됨 : %d"
 
-#: packages/lib/services/report.js:236
+#: packages/lib/services/ReportService.js:217
 msgid "Folders"
 msgstr "폴더"
 
-#: packages/lib/services/report.js:244
+#: packages/lib/services/ReportService.js:223
 #, javascript-format
 msgid "%s: %d notes"
 msgstr "%s: %d 노트"
 
-#: packages/lib/services/report.js:252
+#: packages/lib/services/ReportService.js:228
 msgid "Coming alarms"
 msgstr "예정된 알람"
 
-#: packages/lib/services/report.js:257
+#: packages/lib/services/ReportService.js:232
 #, javascript-format
 msgid "On %s: %s"
 msgstr "%s: %s"
@@ -3134,7 +3276,7 @@ msgstr "맞춤법 검사기 사용"
 
 #: packages/lib/services/spellChecker/SpellCheckerService.js:173
 msgid "Change language"
-msgstr "언어 전"
+msgstr "언어 전환"
 
 #: packages/app-cli/app/command-cp.js:13
 msgid ""
@@ -3169,10 +3311,10 @@ msgstr "정렬 순서를 바꿉니다."
 msgid ""
 "Displays only the items of the specific type(s). Can be `n` for notes, `t` "
 "for to-dos, or `nt` for notes and to-dos (eg. `-tt` would display only the "
-"to-dos, while `-ttd` would display notes and to-dos."
+"to-dos, while `-tnt` would display notes and to-dos."
 msgstr ""
 "특정 형식의 항목만 표시합니다. 노트의 경우 `n`, 할 일의 경우 `t`, 노트와 할 "
-"일 모두는 `nt` 입니다. (예시: 할 일은 `-tt`, 노트와 할 일은 `-ttd`)."
+"일 모두는 `nt` 입니다. (예시: 할 일은 `-tt`, 노트와 할 일은 `-tnt`)."
 
 #: packages/app-cli/app/command-ls.js:31
 msgid "Either \"text\" or \"json\""
@@ -3613,7 +3755,7 @@ msgstr "암호화된 항목을 변경할 수 없습니다"
 
 #: packages/app-cli/app/command-help.js:13
 msgid "Displays usage information."
-msgstr "얼마나 썼는지 표시합니다."
+msgstr "사용량 정보를 보여줍니다."
 
 #: packages/app-cli/app/command-help.js:36
 #, javascript-format
@@ -3763,6 +3905,34 @@ msgstr "'할 일' 항목을 완료로 표시합니다."
 msgid "Note is not a to-do: \"%s\""
 msgstr "노트는 '할 일' 항목이 아닙니다: \"%s\""
 
+#~ msgid "Unknown"
+#~ msgstr "알 수 없음"
+
+#~ msgid "Checking..."
+#~ msgstr "검사 중..."
+
+#~ msgid ""
+#~ "The Joplin Nextcloud App is either not installed or misconfigured. Please "
+#~ "see the full error message below:"
+#~ msgstr ""
+#~ "Joplin Nextcloud 애플리케이션이 설치되지 않았거나 잘못 설정되었습니다. 아"
+#~ "래의 상세 오류 메시지를 확인해주세요:"
+
+#~ msgid "Show Log"
+#~ msgstr "로그 보기"
+
+#~ msgid "Joplin Nextcloud App status:"
+#~ msgstr "Joplin Nextcloud 애플리케이션 상태:"
+
+#~ msgid "Check Status"
+#~ msgstr "상태 검사"
+
+#~ msgid "Help"
+#~ msgstr "도움말"
+
+#~ msgid "OneDrive Dev (For testing only)"
+#~ msgstr "OneDrive Dev (실험용)"
+
 #~ msgid ""
 #~ "Type a note title or part of its content to jump to it. Or type # "
 #~ "followed by a tag name, or @ followed by a notebook name."
@@ -3788,9 +3958,6 @@ msgstr "노트는 '할 일' 항목이 아닙니다: \"%s\""
 
 #~ msgid "Click to stop external editing"
 #~ msgstr "외부 편집을 그만 두시려면 클릭하세요"
-
-#~ msgid "Watching..."
-#~ msgstr "외부 보기..."
 
 #~ msgid "Content Properties"
 #~ msgstr "노트 속성"

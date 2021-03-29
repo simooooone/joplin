@@ -81,7 +81,7 @@ https://github.com/laurent22/joplin/blob/dev/readme/api/references/plugin_manife
 		background-color: #eee;
 		border: 1px solid #ccc;
 		font-size: .85em;
-		word-break: break-all;
+	/*	word-break: break-all; */
 	}
 	pre code {
 		border: none;
@@ -215,6 +215,8 @@ https://github.com/laurent22/joplin/blob/dev/readme/api/references/plugin_manife
 		display: table-cell;
 		display: flex;
 		width: 100%;
+		/* For GSoC: */
+		min-width: 470px;
 	}
 	.nav ul li {
 		display: inline-block;
@@ -315,15 +317,10 @@ https://github.com/laurent22/joplin/blob/dev/readme/api/references/plugin_manife
 		<ul>
 			<li class=""><a href="https:&#x2F;&#x2F;joplinapp.org/" title="Home"><i class="fa fa-home"></i></a></li>
 			<li><a href="https://discourse.joplinapp.org" title="Forum">Forum</a></li>
-			<li><a class="help" href="#" title="Menu">Menu</a></li>
-			<!-- <li><a class="gsod" href="https://joplinapp.org/gsod2020/" title="Google Season of Docs 2020">GSoD 2020</a></li> -->
+			<li><a class="gsoc" href="https://joplinapp.org/gsoc2021/index/" title="Google Summer of Code 2021">GSoC 2021</a></li>
 		</ul>
 		<div class="nav-right">
-			<!--
-				<iframe class="share-btn" src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Fjoplinapp.org&layout=button&size=small&mobile_iframe=true&width=60&height=20&appId" width="60" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-				<iframe class="share-btn" src="https://platform.twitter.com/widgets/tweet_button.html?url=http%3A%2F%2Fjoplinapp.org" width="62" height="20" title="Tweet" style="border: 0; overflow: hidden;"></iframe>
-			-->
-			<iframe class="share-btn share-btn-github" src="https://ghbtns.com/github-btn.html?user=laurent22&repo=joplin&type=star&count=true" frameborder="0" scrolling="0" width="100px" height="20px"></iframe>
+			<iframe class="share-btn share-btn-github" src="https://ghbtns.com/github-btn.html?user=laurent22&repo=joplin&type=star&count=true" frameborder="0" scrolling="0" width="115px" height="20px"></iframe>
 		</div>
 	</div>
 </div>
@@ -377,13 +374,17 @@ https://github.com/laurent22/joplin/blob/dev/readme/api/references/plugin_manife
 <li><a href="https://joplinapp.org/spec/sync_lock/">Sync Lock spec</a></li>
 <li><a href="https://joplinapp.org/spec/plugins/">Plugin Architecture spec</a></li>
 <li><a href="https://joplinapp.org/spec/search_sorting/">Search Sorting spec</a></li>
+<li><a href="https://joplinapp.org/spec/server_file_url_format/">Server: File URL Format</a></li>
+<li><a href="https://joplinapp.org/spec/server_delta_sync/">Server: Delta Sync</a></li>
+<li><a href="https://joplinapp.org/spec/server_sharing/">Server: Sharing</a></li>
 </ul>
 </li>
 <li>
-<p>Google Summer of Code 2020</p>
+<p>Google Summer of Code 2021</p>
 <ul>
-<li><a href="https://joplinapp.org/gsoc2020/index/">Google Summer of Code 2020</a></li>
-<li><a href="https://joplinapp.org/gsoc2020/ideas/">Project Ideas</a></li>
+<li><a href="https://joplinapp.org/gsoc2021/index/">Google Summer of Code 2021</a></li>
+<li><a href="https://joplinapp.org/gsoc2021/pull_request_guidelines/">How to submit a GSoC pull request</a></li>
+<li><a href="https://joplinapp.org/gsoc2021/ideas/">Project Ideas</a></li>
 </ul>
 </li>
 <li>
@@ -391,6 +392,7 @@ https://github.com/laurent22/joplin/blob/dev/readme/api/references/plugin_manife
 <ul>
 <li><a href="https://joplinapp.org/changelog/">Changelog (Desktop App)</a></li>
 <li><a href="https://joplinapp.org/changelog_cli/">Changelog (CLI App)</a></li>
+<li><a href="https://joplinapp.org/changelog_server/">Changelog (Server)</a></li>
 <li><a href="https://joplinapp.org/stats/">Stats</a></li>
 <li><a href="https://joplinapp.org/donate/">Donate</a></li>
 </ul>
@@ -399,12 +401,15 @@ https://github.com/laurent22/joplin/blob/dev/readme/api/references/plugin_manife
 </div>
 
 	<div class="main">
+<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=E8JMYD2LQ8MMA&amp;lc=GB&amp;item_name=Joplin+Development&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"><img src="https://joplinapp.org/images/badges/Donate-PayPal-green.svg" alt="Donate using PayPal"></a> <a href="https://github.com/sponsors/laurent22/"><img src="https://joplinapp.org/images/badges/GitHub-Badge.svg" alt="Sponsor on GitHub"></a> <a href="https://www.patreon.com/joplin"><img src="https://joplinapp.org/images/badges/Patreon-Badge.svg" alt="Become a patron"></a> <a href="https://joplinapp.org/donate/#donations"><img src="https://joplinapp.org/images/badges/Donate-IBAN.svg" alt="Donate using IBAN"></a></p>
+<hr>
 <h1>Plugin Manifest<a name="plugin-manifest" href="#plugin-manifest" class="heading-anchor">🔗</a></h1>
 <p>The manifest file is a JSON file that describes various properties of the plugin. If you use the Yeoman generator, it should be automatically generated based on the answers you've provided. The supported properties are:</p>
 <table>
 <thead>
 <tr>
 <th>Name</th>
+<th>Type</th>
 <th>Required?</th>
 <th>Description</th>
 </tr>
@@ -412,42 +417,61 @@ https://github.com/laurent22/joplin/blob/dev/readme/api/references/plugin_manife
 <tbody>
 <tr>
 <td><code>manifest_version</code></td>
+<td>number</td>
 <td><strong>Yes</strong></td>
 <td>For now should always be &quot;1&quot;.</td>
 </tr>
 <tr>
 <td><code>name</code></td>
+<td>string</td>
 <td><strong>Yes</strong></td>
 <td>Name of the plugin. Should be a user-friendly string, as it will be displayed in the UI.</td>
 </tr>
 <tr>
 <td><code>version</code></td>
+<td>string</td>
 <td><strong>Yes</strong></td>
 <td>Version number such as &quot;1.0.0&quot;.</td>
 </tr>
 <tr>
 <td><code>app_min_version</code></td>
+<td>string</td>
 <td><strong>Yes</strong></td>
 <td>Minimum version of Joplin that the plugin is compatible with. In general it should be whatever version you are using to develop the plugin.</td>
 </tr>
 <tr>
 <td><code>description</code></td>
+<td>string</td>
 <td>No</td>
 <td>Detailed description of the plugin.</td>
 </tr>
 <tr>
 <td><code>author</code></td>
+<td>string</td>
 <td>No</td>
 <td>Plugin author name.</td>
 </tr>
 <tr>
+<td><code>keywords</code></td>
+<td>string[]</td>
+<td>No</td>
+<td>Keywords associated with the plugins. They are used in search in particular.</td>
+</tr>
+<tr>
 <td><code>homepage_url</code></td>
+<td>string</td>
 <td>No</td>
 <td>Homepage URL of the plugin. It can also be, for example, a link to a GitHub repository.</td>
 </tr>
+<tr>
+<td><code>repository_url</code></td>
+<td>string</td>
+<td>No</td>
+<td>Repository URL where the plugin source code is hosted.</td>
+</tr>
 </tbody>
 </table>
-<p>Here's a complete example:</p>
+<h2>Manifest example<a name="manifest-example" href="#manifest-example" class="heading-anchor">🔗</a></h2>
 <pre><code class="language-json">{
     &quot;manifest_version&quot;: 1,
     &quot;name&quot;: &quot;Joplin Simple Plugin&quot;,
@@ -475,13 +499,6 @@ https://github.com/laurent22/joplin/blob/dev/readme/api/references/plugin_manife
 		}
 	}
 
-	$('#toc').hide();
-
-	$('.help').click(function(event) {
-		event.preventDefault();
-		$('#toc').show();
-	});
-
 	$(window).scroll(function() {
 		stickyHeader();
 	});
@@ -497,7 +514,7 @@ https://github.com/laurent22/joplin/blob/dev/readme/api/references/plugin_manife
 </div></div>
 
 <div class="footer">
-Copyright (C) 2016-2020 Laurent Cozic
+Copyright (C) 2016-2021 Laurent Cozic
 </div>
 </body>
 </html>

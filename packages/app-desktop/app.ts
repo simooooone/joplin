@@ -22,24 +22,27 @@ import { LayoutItem } from './gui/ResizableLayout/utils/types';
 import stateToWhenClauseContext from './services/commands/stateToWhenClauseContext';
 import ResourceService from '@joplin/lib/services/ResourceService';
 import ExternalEditWatcher from '@joplin/lib/services/ExternalEditWatcher';
+import produce from 'immer';
+import iterateItems from './gui/ResizableLayout/utils/iterateItems';
+import validateLayout from './gui/ResizableLayout/utils/validateLayout';
 
 const { FoldersScreenUtils } = require('@joplin/lib/folders-screen-utils.js');
-const MasterKey = require('@joplin/lib/models/MasterKey');
-const Folder = require('@joplin/lib/models/Folder');
+import MasterKey from '@joplin/lib/models/MasterKey';
+import Folder from '@joplin/lib/models/Folder';
 const fs = require('fs-extra');
-const Tag = require('@joplin/lib/models/Tag.js');
-const { reg } = require('@joplin/lib/registry.js');
+import Tag from '@joplin/lib/models/Tag';
+import { reg } from '@joplin/lib/registry';
 const packageInfo = require('./packageInfo.js');
-const DecryptionWorker = require('@joplin/lib/services/DecryptionWorker');
+import DecryptionWorker from '@joplin/lib/services/DecryptionWorker';
 const ClipperServer = require('@joplin/lib/ClipperServer');
 const { webFrame } = require('electron');
 const Menu = bridge().Menu;
 const PluginManager = require('@joplin/lib/services/PluginManager');
-const RevisionService = require('@joplin/lib/services/RevisionService');
-const MigrationService = require('@joplin/lib/services/MigrationService');
+import RevisionService from '@joplin/lib/services/RevisionService';
+import MigrationService from '@joplin/lib/services/MigrationService';
 const TemplateUtils = require('@joplin/lib/TemplateUtils');
 const CssUtils = require('@joplin/lib/CssUtils');
-// const populateDatabase = require('@joplin/lib/services/debug/populateDatabase').default;
+// import  populateDatabase from '@joplin/lib/services/debug/populateDatabase';
 
 const commands = [
 	require('./gui/MainScreen/commands/editAlarm'),
@@ -75,7 +78,7 @@ const commands = [
 	require('./gui/NoteEditor/commands/showRevisions'),
 	require('./gui/NoteList/commands/focusElementNoteList'),
 	require('./gui/NoteListControls/commands/focusSearch'),
-	require('./gui/SideBar/commands/focusElementSideBar'),
+	require('./gui/Sidebar/commands/focusElementSideBar'),
 ];
 
 // Commands that are not tied to any particular component.
@@ -89,12 +92,13 @@ const globalCommands = [
 	require('./commands/startExternalEditing'),
 	require('./commands/stopExternalEditing'),
 	require('./commands/toggleExternalEditing'),
+	require('./commands/replaceMisspelling'),
 	require('@joplin/lib/commands/historyBackward'),
 	require('@joplin/lib/commands/historyForward'),
 	require('@joplin/lib/commands/synchronize'),
 ];
 
-const editorCommandDeclarations = require('./gui/NoteEditor/commands/editorCommandDeclarations').default;
+import editorCommandDeclarations from './gui/NoteEditor/commands/editorCommandDeclarations';
 
 const pluginClasses = [
 	require('./plugins/GotoAnything').default,
@@ -117,6 +121,7 @@ export interface AppState extends State {
 	visibleDialogs: any; // empty object if no dialog is visible. Otherwise contains the list of visible dialogs.
 	focusedField: string;
 	layoutMoveMode: boolean;
+	startupPluginsLoaded: boolean;
 
 	// Extra reducer keys go here
 	watchedResources: any;
@@ -140,10 +145,13 @@ const appDefaultState: AppState = {
 	focusedField: null,
 	layoutMoveMode: false,
 	mainLayout: null,
+	startupPluginsLoaded: false,
 	...resourceEditWatcherDefaultState,
 };
 
 class Application extends BaseApplication {
+
+	private checkAllPluginStartedIID_: any = null;
 
 	constructor() {
 		super();
@@ -196,6 +204,20 @@ class Application extends BaseApplication {
 				}
 				break;
 
+			case 'STARTUP_PLUGINS_LOADED':
+
+				// When all startup plugins have loaded, we also recreate the
+				// main layout to ensure that it is updated in the UI. There's
+				// probably a cleaner way to do this, but for now that will do.
+				if (state.startupPluginsLoaded !== action.value) {
+					newState = {
+						...newState,
+						startupPluginsLoaded: action.value,
+						mainLayout: JSON.parse(JSON.stringify(newState.mainLayout)),
+					};
+				}
+				break;
+
 			case 'WINDOW_CONTENT_SIZE_SET':
 
 				newState = Object.assign({}, state);
@@ -245,6 +267,29 @@ class Application extends BaseApplication {
 					...state,
 					mainLayout: action.value,
 				};
+				break;
+
+			case 'MAIN_LAYOUT_SET_ITEM_PROP':
+
+				{
+					let newLayout = produce(state.mainLayout, (draftLayout: LayoutItem) => {
+						iterateItems(draftLayout, (_itemIndex: number, item: LayoutItem, _parent: LayoutItem) => {
+							if (item.key === action.itemKey) {
+								(item as any)[action.propName] = action.propValue;
+								return false;
+							}
+							return true;
+						});
+					});
+
+					if (newLayout !== state.mainLayout) newLayout = validateLayout(newLayout);
+
+					newState = {
+						...state,
+						mainLayout: newLayout,
+					};
+				}
+
 				break;
 
 			case 'NOTE_FILE_WATCHER_ADD':
@@ -433,7 +478,7 @@ class Application extends BaseApplication {
 	updateEditorFont() {
 		const fontFamilies = [];
 		if (Setting.value('style.editor.fontFamily')) fontFamilies.push(`"${Setting.value('style.editor.fontFamily')}"`);
-		fontFamilies.push('monospace');
+		fontFamilies.push('Avenir, Arial, sans-serif');
 
 		// The '*' and '!important' parts are necessary to make sure Russian text is displayed properly
 		// https://github.com/laurent22/joplin/issues/155
@@ -501,7 +546,7 @@ class Application extends BaseApplication {
 		// time, however we only effectively uninstall the plugin the next
 		// time the app is started. What plugin should be uninstalled is
 		// stored in the settings.
-		const newSettings = await service.uninstallPlugins(pluginSettings);
+		const newSettings = service.clearUpdateState(await service.uninstallPlugins(pluginSettings));
 		Setting.setValue('plugins.states', newSettings);
 
 		try {
@@ -525,6 +570,16 @@ class Application extends BaseApplication {
 		} catch (error) {
 			this.logger().error(`There was an error loading plugins from ${Setting.value('plugins.devPluginPaths')}:`, error);
 		}
+
+		this.checkAllPluginStartedIID_ = setInterval(() => {
+			if (service.allPluginsStarted) {
+				clearInterval(this.checkAllPluginStartedIID_);
+				this.dispatch({
+					type: 'STARTUP_PLUGINS_LOADED',
+					value: true,
+				});
+			}
+		}, 500);
 	}
 
 	async start(argv: string[]): Promise<any> {
@@ -678,12 +733,12 @@ class Application extends BaseApplication {
 		if (Setting.value('env') === 'dev') {
 			void AlarmService.updateAllNotifications();
 		} else {
-			reg.scheduleSync(1000).then(() => {
+			void reg.scheduleSync(1000).then(() => {
 				// Wait for the first sync before updating the notifications, since synchronisation
 				// might change the notifications.
 				void AlarmService.updateAllNotifications();
 
-				DecryptionWorker.instance().scheduleStart();
+				void DecryptionWorker.instance().scheduleStart();
 			});
 		}
 
@@ -712,6 +767,7 @@ class Application extends BaseApplication {
 				revisionService: RevisionService.instance(),
 				migrationService: MigrationService.instance(),
 				decryptionWorker: DecryptionWorker.instance(),
+				commandService: CommandService.instance(),
 				bridge: bridge(),
 			};
 		};
@@ -730,13 +786,15 @@ class Application extends BaseApplication {
 		// 	console.info(CommandService.instance().commandsToMarkdownTable(this.store().getState()));
 		// }, 2000);
 
-		// this.dispatch({
-		// 	type: 'NAV_GO',
-		// 	routeName: 'Config',
-		// 	props: {
-		// 		defaultSection: 'plugins',
-		// 	},
-		// });
+		// setTimeout(() => {
+		// 	this.dispatch({
+		// 		type: 'NAV_GO',
+		// 		routeName: 'Config',
+		// 		props: {
+		// 			defaultSection: 'plugins',
+		// 		},
+		// 	});
+		// }, 5000);
 
 		return null;
 	}

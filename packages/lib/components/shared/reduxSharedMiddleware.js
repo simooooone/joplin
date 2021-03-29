@@ -1,10 +1,10 @@
 const Setting = require('../../models/Setting').default;
-const Tag = require('../../models/Tag');
+const Tag = require('../../models/Tag').default;
 const BaseModel = require('../../BaseModel').default;
-const Note = require('../../models/Note');
+const Note = require('../../models/Note').default;
 const { reg } = require('../../registry.js');
-const ResourceFetcher = require('../../services/ResourceFetcher');
-const DecryptionWorker = require('../../services/DecryptionWorker');
+const ResourceFetcher = require('../../services/ResourceFetcher').default;
+const DecryptionWorker = require('../../services/DecryptionWorker').default;
 const eventManager = require('../../eventManager').default;
 
 const reduxSharedMiddleware = async function(store, next, action) {
@@ -43,16 +43,19 @@ const reduxSharedMiddleware = async function(store, next, action) {
 		DecryptionWorker.instance().scheduleStart();
 	}
 
-	// 2020-10-19: Removed "NOTE_UPDATE_ONE" because there's no property in a note that
-	// should trigger a refreshing of the tags.
-	// Trying to fix this: https://github.com/laurent22/joplin/issues/3893
 	if (action.type == 'NOTE_DELETE' ||
-		// action.type == 'NOTE_UPDATE_ONE' ||
 		action.type == 'NOTE_UPDATE_ALL' ||
 		action.type == 'NOTE_TAG_REMOVE' ||
 		action.type == 'TAG_UPDATE_ONE') {
 		refreshTags = true;
 	}
+
+	// handle the case when the selected note has been moved to another
+	// folder and a new one is now selected, need to show correct tags for it
+	if (action.type == 'NOTE_UPDATE_ONE' && action.changedFields.indexOf('parent_id') >= 0) {
+		refreshTags = true;
+	}
+
 
 	if (action.type === 'NOTE_SELECT' || action.type === 'NAV_BACK') {
 		const noteIds = newState.provisionalNoteIds.slice();

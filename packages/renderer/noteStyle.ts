@@ -126,10 +126,11 @@ export default function(theme: any) {
 			margin-top: 0.2em;
 			margin-bottom: 0;
 		}
+
 		.resource-icon {
 			display: inline-block;
 			position: relative;
-			top: .5em;
+			top: 0.3em;
 			text-decoration: none;
 			width: 1.2em;
 			height: 1.4em;
@@ -301,13 +302,18 @@ export default function(theme: any) {
 			display: none;
 		}
 
+		mark {
+			background: #F7D26E;
+			color: black;
+		}
+
 		/* =============================================== */
 		/* For TinyMCE */
 		/* =============================================== */
 
 		.mce-content-body {
 			/* Note: we give a bit more padding at the bottom, to allow scrolling past the end of the document */
-			padding: 5px 10px 10em 10px;
+			padding: 5px 10px 10em 0;
 		}
 
 		/*

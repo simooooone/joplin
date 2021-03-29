@@ -12,14 +12,16 @@ import usePluginServiceRegistration from '../../utils/usePluginServiceRegistrati
 import { utils as pluginUtils } from '@joplin/lib/services/plugins/reducer';
 import { _, closestSupportedLocale } from '@joplin/lib/locale';
 import useContextMenu from './utils/useContextMenu';
+import getCopyableContent from './utils/getCopyableContent';
 import shim from '@joplin/lib/shim';
 
 const { MarkupToHtml } = require('@joplin/renderer');
 const taboverride = require('taboverride');
-const { reg } = require('@joplin/lib/registry.js');
-const BaseItem = require('@joplin/lib/models/BaseItem');
+import { reg } from '@joplin/lib/registry';
+import BaseItem from '@joplin/lib/models/BaseItem';
+import setupToolbarButtons from './utils/setupToolbarButtons';
 const { themeStyle } = require('@joplin/lib/theme');
-// const { clipboard } = require('electron');
+const { clipboard } = require('electron');
 const supportedLocales = require('./supportedLocales');
 
 function markupRenderOptions(override: any = null) {
@@ -249,6 +251,12 @@ const TinyMCE = (props: NoteBodyEditorProps, ref: any) => {
 					editor.insertContent(result.html);
 				} else if (cmd.name === 'editor.focus') {
 					editor.focus();
+				} else if (cmd.name === 'editor.execCommand') {
+					if (!('ui' in cmd.value)) cmd.value.ui = false;
+					if (!('value' in cmd.value)) cmd.value.value = null;
+					if (!('args' in cmd.value)) cmd.value.args = {};
+
+					editor.execCommand(cmd.value.name, cmd.value.ui, cmd.value.value, cmd.value.args);
 				} else if (cmd.name === 'dropItems') {
 					if (cmd.value.type === 'notes') {
 						const result = await markupToHtml.current(MarkupToHtml.MARKUP_LANGUAGE_MARKDOWN, cmd.value.markdownTags.join('\n'), markupRenderOptions({ bodyOnly: true }));
@@ -441,12 +449,17 @@ const TinyMCE = (props: NoteBodyEditorProps, ref: any) => {
 			.tox .tox-button--naked:hover:not(:disabled) {
 				background-color: ${theme.backgroundColor} !important;
 			}
-
+			
+			.tox .tox-tbtn:focus {
+				background-color: ${theme.backgroundColor3}
+			}
+			
 			.tox .tox-tbtn:hover {
 				color: ${theme.colorHover3} !important;
 				fill: ${theme.colorHover3} !important;
 				background-color: ${theme.backgroundColorHover3}
-			}
+			}			
+			
 
 			.tox .tox-tbtn {
 				width: ${theme.toolbarHeight}px;
@@ -532,7 +545,7 @@ const TinyMCE = (props: NoteBodyEditorProps, ref: any) => {
 			const toolbarPluginButtons = pluginCommandNames.length ? ` | ${pluginCommandNames.join(' ')}` : '';
 
 			const toolbar = [
-				'bold', 'italic', '|',
+				'bold', 'italic', 'joplinHighlight', 'joplinStrikethrough', 'formattingExtras', '|',
 				'link', 'joplinInlineCode', 'joplinCodeBlock', 'joplinAttach', '|',
 				'bullist', 'numlist', 'joplinChecklist', '|',
 				'h1', 'h2', 'h3', 'hr', 'blockquote', 'table', `joplinInsertDateTime${toolbarPluginButtons}`,
@@ -560,6 +573,13 @@ const TinyMCE = (props: NoteBodyEditorProps, ref: any) => {
 				localization_function: _,
 				contextmenu: false,
 				browser_spellcheck: true,
+				formats: {
+					joplinHighlight: { inline: 'mark', remove: 'all' },
+					joplinStrikethrough: { inline: 's', remove: 'all' },
+					joplinInsert: { inline: 'ins', remove: 'all' },
+					joplinSub: { inline: 'sub', remove: 'all' },
+					joplinSup: { inline: 'sup', remove: 'all' },
+				},
 				setup: (editor: any) => {
 
 					function openEditDialog(editable: any) {
@@ -632,6 +652,8 @@ const TinyMCE = (props: NoteBodyEditorProps, ref: any) => {
 							insertResourcesIntoContentRef.current();
 						},
 					});
+
+					setupToolbarButtons(editor);
 
 					editor.ui.registry.addButton('joplinCodeBlock', {
 						tooltip: _('Code Block'),
@@ -960,11 +982,12 @@ const TinyMCE = (props: NoteBodyEditorProps, ref: any) => {
 			//
 			// Any maybe others, so to catch them all we only check the prefix
 
-			const changeCommands = ['mceBlockQuote', 'ToggleJoplinChecklistItem'];
+			const changeCommands = ['mceBlockQuote', 'ToggleJoplinChecklistItem', 'Bold', 'Italic', 'Underline', 'Paragraph'];
 
 			if (
 				changeCommands.includes(c) ||
 				c.indexOf('Insert') === 0 ||
+				c.indexOf('Header') === 0 ||
 				c.indexOf('mceToggle') === 0 ||
 				c.indexOf('mceInsert') === 0 ||
 				c.indexOf('mceTable') === 0
@@ -1015,25 +1038,36 @@ const TinyMCE = (props: NoteBodyEditorProps, ref: any) => {
 			}
 		}
 
-		function onKeyDown(_event: any) {
-			// It seems "paste as text" is now handled automatically by
-			// either Chrome, Electron and/or TinyMCE so the code below
-			// should not longer be necessary. Also fixes
+		async function onCopy(event: any) {
+			const copiedContent = editor.selection.getContent();
+			const copyableContent = getCopyableContent(copiedContent);
+			clipboard.writeHTML(copyableContent);
+			event.preventDefault();
+		}
+
+		function onKeyDown(event: any) {
+			// It seems "paste as text" is handled automatically by
+			// on Windows so the code below so we need to run the below
+			// code only on macOS (and maybe Linux). If we were to run
+			// this on Windows we would have this double-paste issue:
 			// https://github.com/laurent22/joplin/issues/4243
 
 			// Handle "paste as text". Note that when pressing CtrlOrCmd+Shift+V it's going
 			// to trigger the "keydown" event but not the "paste" event, so it's ok to process
 			// it here and we don't need to do anything special in onPaste
-			// if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.code === 'KeyV') {
-			// 	const pastedText = clipboard.readText();
-			// 	if (pastedText) editor.insertContent(pastedText);
-			// }
+			if (!shim.isWindows()) {
+				if ((event.metaKey || event.ctrlKey) && event.shiftKey && event.code === 'KeyV') {
+					const pastedText = clipboard.readText();
+					if (pastedText) editor.insertContent(pastedText);
+				}
+			}
 		}
 
 		editor.on('keyup', onKeyUp);
 		editor.on('keydown', onKeyDown);
 		editor.on('keypress', onKeypress);
 		editor.on('paste', onPaste);
+		editor.on('copy', onCopy);
 		// `compositionend` means that a user has finished entering a Chinese
 		// (or other languages that require IME) character.
 		editor.on('compositionend', onChangeHandler);
@@ -1049,6 +1083,7 @@ const TinyMCE = (props: NoteBodyEditorProps, ref: any) => {
 				editor.off('keydown', onKeyDown);
 				editor.off('keypress', onKeypress);
 				editor.off('paste', onPaste);
+				editor.off('copy', onCopy);
 				editor.off('compositionend', onChangeHandler);
 				editor.off('cut', onChangeHandler);
 				editor.off('joplinChange', onChangeHandler);

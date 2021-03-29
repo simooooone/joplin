@@ -1,4 +1,5 @@
 module.exports = {
+	'root': true,
 	'env': {
 		'browser': true,
 		'es6': true,
@@ -34,6 +35,9 @@ module.exports = {
 		'chrome': 'readonly',
 		'browser': 'readonly',
 
+		// Server admin UI global variables
+		'onDocumentReady': 'readonly',
+
 		'tinymce': 'readonly',
 	},
 	'parserOptions': {
@@ -61,7 +65,12 @@ module.exports = {
 		'no-var': ['error'],
 		'no-new-func': ['error'],
 		'import/prefer-default-export': ['error'],
-		'import/first': ['error'],
+
+		// This rule should not be enabled since it matters in what order
+		// imports are done, in particular in relation to the shim.setReact
+		// call, which should be done first, but this rule might move it down.
+		// 'import/first': ['error'],
+
 		'no-array-constructor': ['error'],
 		'radix': ['error'],
 
@@ -116,6 +125,7 @@ module.exports = {
 		'space-before-blocks': 'error',
 		'spaced-comment': ['error', 'always'],
 		'keyword-spacing': ['error', { 'before': true, 'after': true }],
+		'no-multi-spaces': ['error'],
 	},
 	'plugins': [
 		'react',

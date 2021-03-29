@@ -1,12 +1,19 @@
 import { ModelType } from '../../../BaseModel';
 import eventManager from '../../../eventManager';
+import Setting from '../../../models/Setting';
+import { FolderEntity } from '../../database/types';
 import makeListener from '../utils/makeListener';
 import { Disposable } from './types';
 
 /**
  * @ignore
  */
-const Note = require('../../../models/Note');
+import Note from '../../../models/Note';
+
+/**
+ * @ignore
+ */
+import Folder from '../../../models/Folder';
 
 enum ItemChangeEventType {
 	Create = 1,
@@ -69,11 +76,12 @@ export default class JoplinWorkspace {
 	}
 
 	/**
-	 * Called when the content of a note changes.
+	 * Called when the content of the current note changes.
 	 */
 	public async onNoteChange(handler: ItemChangeHandler): Promise<Disposable> {
 		const wrapperHandler = (event: any) => {
 			if (event.itemType !== ModelType.Note) return;
+			if (!this.store.getState().selectedNoteIds.includes(event.itemId)) return;
 
 			handler({
 				id: event.itemId,
@@ -112,6 +120,17 @@ export default class JoplinWorkspace {
 		const noteIds = this.store.getState().selectedNoteIds;
 		if (noteIds.length !== 1) { return null; }
 		return Note.load(noteIds[0]);
+	}
+
+	/**
+	 * Gets the currently selected folder. In some cases, for example during
+	 * search or when viewing a tag, no folder is actually selected in the user
+	 * interface. In that case, that function would return the last selected
+	 * folder.
+	 */
+	public async selectedFolder(): Promise<FolderEntity> {
+		const folderId = Setting.value('activeFolderId');
+		return folderId ? await Folder.load(folderId) : null;
 	}
 
 	/**

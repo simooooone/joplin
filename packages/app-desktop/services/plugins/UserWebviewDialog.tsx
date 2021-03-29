@@ -94,6 +94,13 @@ export default function UserWebviewDialog(props: Props) {
 		}
 	}, [buttons]);
 
+	const onReady = useCallback(() => {
+		// We focus the dialog once it's ready to make sure that the ESC/Enter
+		// keyboard shortcuts are working.
+		// https://github.com/laurent22/joplin/issues/4474
+		if (webviewRef.current) webviewRef.current.focus();
+	}, []);
+
 	return (
 		<StyledRoot>
 			<Dialog>
@@ -102,7 +109,6 @@ export default function UserWebviewDialog(props: Props) {
 						ref={webviewRef}
 						html={props.html}
 						scripts={props.scripts}
-						onMessage={props.onMessage}
 						pluginId={props.pluginId}
 						viewId={props.viewId}
 						themeId={props.themeId}
@@ -110,6 +116,7 @@ export default function UserWebviewDialog(props: Props) {
 						fitToContent={true}
 						onSubmit={onSubmit}
 						onDismiss={onDismiss}
+						onReady={onReady}
 					/>
 				</UserWebViewWrapper>
 				<UserWebviewDialogButtonBar buttons={buttons}/>

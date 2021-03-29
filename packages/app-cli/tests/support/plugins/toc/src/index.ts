@@ -1,4 +1,5 @@
 import joplin from 'api';
+import { ToolbarButtonLocation } from 'api/types';
 
 const uslug = require('uslug');
 
@@ -41,13 +42,13 @@ joplin.plugins.register({
 	onStart: async function() {
 		const panels = joplin.views.panels;
 
-		const view = await (panels as any).create();
+		const view = await panels.create("panel_1");
 
 		await panels.setHtml(view, 'Loading...');
 		await panels.addScript(view, './webview.js');
 		await panels.addScript(view, './webview.css');
 
-		panels.onMessage(view, (message:any) => {
+		await panels.onMessage(view, (message:any) => {
 			if (message.name === 'scrollToHash') {
 				joplin.commands.execute('scrollToHash', message.hash)
 			}
@@ -87,9 +88,21 @@ joplin.plugins.register({
 			updateTocView();
 		});
 
-		joplin.workspace.onNoteContentChange(() => {
+		joplin.workspace.onNoteChange(() => {
 			updateTocView();
 		});
+
+		await joplin.commands.register({
+			name: 'toggleToc',
+			label: 'Toggle TOC',
+			iconName: 'fas fa-drum',
+			execute: async () => {
+				const isVisible = await panels.visible(view);
+				await panels.show(view, !isVisible);
+			},
+		});
+
+		await joplin.views.toolbarButtons.create('toggleToc', 'toggleToc', ToolbarButtonLocation.NoteToolbar);
 
 		updateTocView();
 	},
